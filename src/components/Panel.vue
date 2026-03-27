@@ -1,34 +1,37 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { useFavsManager, PANEL_STATE } from '@/composables/useFavsManager.js'
+
+// Composables
+const { state, toggleExport, toggleImport, togglePaste } = useFavsManager()
 
 // Elements
 const textareaRef = ref(null)
 const fileInputRef = ref(null)
 
 // States
-const PANEL_STATE = {
-	IDLE: 'idle',
-	EXPORT: 'export',
-	IMPORT: 'import',
-	PASTE: 'paste',
-	DECISION: 'decision',
-}
-const state = ref(PANEL_STATE.DECISION)
+const isExport = computed(() => state.value === PANEL_STATE.EXPORT)
+const isImport = computed(() => state.value === PANEL_STATE.IMPORT)
+const isPaste = computed(() => state.value === PANEL_STATE.PASTE)
+const isDecision = computed(() => state.value === PANEL_STATE.DECISION)
 
-const isExport = state.value === PANEL_STATE.EXPORT
-const isImport = state.value === PANEL_STATE.IMPORT
-const isPaste = state.value === PANEL_STATE.PASTE
-const isDecision = state.value === PANEL_STATE.DECISION
+const triggerFileInput = (e) => {
+	console.log('triggerFileInput', e)
+	fileInputRef.value?.click()
+}
+const onFileChange = (e) => {
+	console.log('onFileChange', e)
+}
 
 const onTogglePaste = (e) => {
 	console.log('onTogglePaste', e)
 }
 
-const onFileChange = (e) => {
-	console.log('onFileChange', e)
+const exportFile = (e) => {
+	console.log('exportFile', e)
 }
-const triggerFileInput = (e) => {
-	console.log('triggerFileInput', e)
+const exportCopy = (e) => {
+	console.log('exportCopy', e)
 }
 
 const applyMerge = () => {
@@ -39,13 +42,6 @@ const applyOverride = (e) => {
 }
 const cancelImport = (e) => {
 	console.log('cancelImport', e)
-}
-
-const exportFile = (e) => {
-	console.log('exportFile', e)
-}
-const exportCopy = (e) => {
-	console.log('exportCopy', e)
 }
 </script>
 
@@ -65,6 +61,8 @@ const exportCopy = (e) => {
 		<!-- EXPORT ACTIVE SUBMENU UI -->
 		<Transition name="sub">
 			<div v-if="isExport" class="gp-submenu">
+				<h3 class="gp-subtitle">export methods</h3>
+
 				<button class="gp-btn" @click="exportFile">Save as .json</button>
 				<button class="gp-btn" @click="exportCopy">Copy to Clipboard</button>
 			</div>
@@ -73,7 +71,7 @@ const exportCopy = (e) => {
 		<!-- IMPORT ACTIVE SUBMENU UI -->
 		<Transition name="sub">
 			<div v-if="isImport || isPaste" class="gp-submenu">
-				<h3 class="gp-subtitle">import as</h3>
+				<h3 class="gp-subtitle">import methods</h3>
 
 				<button class="gp-btn" @click="triggerFileInput">Select JSON File</button>
 				<button class="gp-btn" :class="{ 'gp-btn--active': isPaste }" @click="onTogglePaste">
