@@ -26,6 +26,7 @@ export function useFavsManager() {
 		state.value = state.value === PANEL_STATE.PASTE ? PANEL_STATE.IDLE : PANEL_STATE.PASTE
 	}
 
+	// IMPORTING
 	const exportFile = () => {
 		console.log('exportFile')
 		const raw = storage.exportRaw()
@@ -37,7 +38,7 @@ export function useFavsManager() {
 		const favList = JSON.parse(raw)
 		const favCounts = String(favList.length).padStart(3, '0') // start with 000 if only one digit, eg 001, 002, ...
 		const date = new Date().toISOString().split('T')[0]
-		const fileName = `radiogarden_backup_${date}_${favCounts}.json`
+		const fileName = `radiogarden_backup_${date}_stations_${favCounts}.json`
 		const anchor = Object.assign(document.createElement('a'), {
 			href: URL.createObjectURL(new Blob([raw], { type: 'application/json' })),
 			download: fileName,
@@ -57,6 +58,7 @@ export function useFavsManager() {
 		navigator.clipboard.writeText(storage.exportRaw()).then(() => console.log('Copied to clipboard'))
 	}
 
+	// IMPORTING
 	const handleFileInput = (file) => {
 		console.log('handleFileInput')
 
@@ -77,12 +79,25 @@ export function useFavsManager() {
 			// TODO: add Toast here
 			if (!Array.isArray(parsed)) return console.log('Must be a JSON array')
 			pendingData.value = parsed
-			console.log(pendingData.value)
+			// console.log(pendingData.value)
 			state.value = PANEL_STATE.DECISION
 			console.log(`${parsed.length} stations ready - choose mode`)
 		} catch {
 			console.log('Invalid JSON')
 		}
+	}
+
+	const applyOverride = () => {
+		storage.write(pendingData.value)
+		// TODO: add Toast here
+		console.log(`Overridden - ${pendingData.value.length} stations saved`)
+		_finalize()
+	}
+
+	const _finalize = () => {
+		pendingData.value = null
+		state.value = PANEL_STATE.IDLE
+		setTimeout(() => location.reload(), 800)
 	}
 
 	return {
@@ -93,5 +108,6 @@ export function useFavsManager() {
 		exportFile,
 		exportCopy,
 		handleFileInput,
+		applyOverride,
 	}
 }
