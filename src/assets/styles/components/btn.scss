@@ -19,12 +19,17 @@
     transition:
         background-color var(--ease-base),
         scale var(--ease-base),
-        color var(--ease-base);
+        color var(--ease-base) opacity var(--ease-base);
 
     &:hover,
     &[aria-pressed="true"] {
         background-color: cmod(currentColor, $a: 0.3);
         scale: 0.98;
+    }
+
+    &:disabled {
+        opacity: 0.7;
+        cursor: wait;
     }
 
 

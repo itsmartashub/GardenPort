@@ -16,6 +16,10 @@ export function useFavsManager() {
 	const state = ref(PANEL_STATE.IDLE)
 	const pendingData = ref(null)
 
+	// Loading states
+	const isExporting = ref(false)
+	const isCopying = ref(false)
+
 	const toggleExport = () => {
 		state.value = state.value === PANEL_STATE.EXPORT ? PANEL_STATE.IDLE : PANEL_STATE.EXPORT
 	}
@@ -26,36 +30,80 @@ export function useFavsManager() {
 		state.value = state.value === PANEL_STATE.PASTE ? PANEL_STATE.IDLE : PANEL_STATE.PASTE
 	}
 
+	const _delay = (ms = 250) => new Promise((resolve) => setTimeout(resolve, ms))
+
 	// IMPORTING
-	const exportFile = () => {
+	const exportFile = async () => {
 		console.log('exportFile')
-		const raw = storage.exportRaw()
-		console.log(raw)
 
-		// TOOD: add Toast here instead of console.lgo
-		if (raw === '[]') return console.log('No favourites found, nothing to export')
+		// Prevent multiple exports
+		if (isExporting.value) return
 
-		const favList = JSON.parse(raw)
-		const favCounts = String(favList.length).padStart(3, '0') // start with 000 if only one digit, eg 001, 002, ...
-		const date = new Date().toISOString().split('T')[0]
-		const fileName = `radiogarden_backup_${date}_stations_${favCounts}.json`
-		const anchor = Object.assign(document.createElement('a'), {
-			href: URL.createObjectURL(new Blob([raw], { type: 'application/json' })),
-			download: fileName,
-		})
+		isExporting.value = true
 
-		anchor.click()
-		URL.revokeObjectURL(anchor.href)
+		try {
+			const raw = storage.exportRaw()
+			console.log(raw)
+
+			if (raw === '[]') {
+				console.log('No favourites found, nothing to export')
+				// TODO: add Toast here
+				return
+			}
+
+			const favList = JSON.parse(raw)
+			const favCounts = String(favList.length).padStart(3, '0')
+			const date = new Date().toISOString().split('T')[0]
+			const fileName = `radiogarden_backup_${date}_stations_${favCounts}.json`
+
+			const anchor = Object.assign(document.createElement('a'), {
+				href: URL.createObjectURL(new Blob([raw], { type: 'application/json' })),
+				download: fileName,
+			})
+
+			anchor.click()
+			URL.revokeObjectURL(anchor.href)
+
+			// Minimum loading time
+			await _delay()
+			// TODO: add success Toast
+			console.log('Export successful')
+		} catch (error) {
+			console.error('Export failed:', error)
+			// TODO: add error Toast
+		} finally {
+			isExporting.value = false
+		}
 	}
-	const exportCopy = () => {
+	const exportCopy = async () => {
 		console.log('exportCopy')
 
-		// TOOD: add Toast here instead of console.lgo
-		const raw = storage.exportRaw()
-		if (raw === '[]') return console.log('No favorites to copy')
+		// Prevent multiple copies
+		if (isCopying.value) return
 
-		// TOOD: add Toast here instead of console.lgo
-		navigator.clipboard.writeText(storage.exportRaw()).then(() => console.log('Copied to clipboard'))
+		isCopying.value = true
+
+		try {
+			const raw = storage.exportRaw()
+
+			if (raw === '[]') {
+				console.log('No favorites to copy')
+				// TODO: add Toast here
+				return
+			}
+
+			await navigator.clipboard.writeText(raw)
+
+			// Minimum loading time
+			await _delay()
+			// TODO: add success Toast
+			console.log('Copied to clipboard')
+		} catch (error) {
+			console.error('Copy failed:', error)
+			// TODO: add error Toast
+		} finally {
+			isCopying.value = false
+		}
 	}
 
 	// IMPORTING
@@ -68,6 +116,10 @@ export function useFavsManager() {
 		reader.onload = (e) => {
 			// console.log('reader.onload', e.target.result)
 			validateAndStage(e.target.result)
+		}
+		reader.onerror = () => {
+			console.error('File read error')
+			// TODO: add error Toast
 		}
 		reader.readAsText(file)
 	}
@@ -125,6 +177,7 @@ export function useFavsManager() {
 			state.value = PANEL_STATE.DECISION
 		} catch (error) {
 			console.log('Invalid JSON')
+			// TODO: add Toast here
 		}
 	}
 
@@ -174,5 +227,7 @@ export function useFavsManager() {
 		applyMerge,
 		cancelImport,
 		handlePasteInput,
+		isExporting,
+		isCopying,
 	}
 }

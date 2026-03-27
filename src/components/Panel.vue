@@ -15,6 +15,8 @@ const {
 	applyMerge,
 	cancelImport,
 	handlePasteInput,
+	isExporting,
+	isCopying,
 } = useFavsManager()
 
 // Elements
@@ -33,7 +35,9 @@ const triggerFileInput = () => {
 }
 const onFileChange = (e) => {
 	console.log('onFileChange')
-	handleFileInput(e.target.files[0])
+	const file = e.target.files[0]
+	if (file) handleFileInput(file)
+
 	e.target.value = ''
 }
 
@@ -68,8 +72,12 @@ const onInputPaste = (e) => {
 		<!-- EXPORT ACTIVE SUBMENU UI -->
 		<Transition name="sub" mode="out-in">
 			<section v-if="isExport" class="gp-submenu">
-				<button class="gp-btn" @click="exportFile">Save as .json</button>
-				<button class="gp-btn" @click="exportCopy">Copy to Clipboard</button>
+				<button class="gp-btn" @click="exportFile" :disabled="isExporting">
+					{{ isExporting ? 'Exporting...' : 'Save as .json' }}
+				</button>
+				<button class="gp-btn" @click="exportCopy" :disabled="isCopying">
+					{{ isCopying ? 'Copying...' : 'Copy to Clipboard' }}
+				</button>
 			</section>
 
 			<!-- IMPORT ACTIVE SUBMENU UI -->
