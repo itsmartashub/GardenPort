@@ -14,6 +14,7 @@ export function useFavsManager() {
 	const storage = useFavsStorage()
 
 	const state = ref(PANEL_STATE.IDLE)
+	const pendingData = ref(null)
 
 	const toggleExport = () => {
 		state.value = state.value === PANEL_STATE.EXPORT ? PANEL_STATE.IDLE : PANEL_STATE.EXPORT
@@ -56,6 +57,34 @@ export function useFavsManager() {
 		navigator.clipboard.writeText(storage.exportRaw()).then(() => console.log('Copied to clipboard'))
 	}
 
+	const handleFileInput = (file) => {
+		console.log('handleFileInput')
+
+		if (!file) return
+
+		const reader = new FileReader()
+		reader.onload = (e) => {
+			// console.log('reader.onload', e.target.result)
+			validateAndStage(e.target.result)
+		}
+		reader.readAsText(file)
+	}
+
+	const validateAndStage = (raw) => {
+		try {
+			const parsed = JSON.parse(raw.trim())
+
+			// TODO: add Toast here
+			if (!Array.isArray(parsed)) return console.log('Must be a JSON array')
+			pendingData.value = parsed
+			console.log(pendingData.value)
+			state.value = PANEL_STATE.DECISION
+			console.log(`${parsed.length} stations ready - choose mode`)
+		} catch {
+			console.log('Invalid JSON')
+		}
+	}
+
 	return {
 		state,
 		toggleExport,
@@ -63,5 +92,6 @@ export function useFavsManager() {
 		togglePaste,
 		exportFile,
 		exportCopy,
+		handleFileInput,
 	}
 }

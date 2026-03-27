@@ -3,7 +3,7 @@ import { ref, computed } from 'vue'
 import { useFavsManager, PANEL_STATE } from '@/composables/useFavsManager.js'
 
 // Composables
-const { state, toggleExport, toggleImport, togglePaste, exportFile, exportCopy } = useFavsManager()
+const { state, toggleExport, toggleImport, togglePaste, exportFile, exportCopy, handleFileInput } = useFavsManager()
 
 // Elements
 const textareaRef = ref(null)
@@ -15,12 +15,14 @@ const isImport = computed(() => state.value === PANEL_STATE.IMPORT)
 const isPaste = computed(() => state.value === PANEL_STATE.PASTE)
 const isDecision = computed(() => state.value === PANEL_STATE.DECISION)
 
-const triggerFileInput = (e) => {
-	console.log('triggerFileInput', e)
+const triggerFileInput = () => {
+	console.log('triggerFileInput')
 	fileInputRef.value?.click()
 }
 const onFileChange = (e) => {
-	console.log('onFileChange', e)
+	console.log('onFileChange')
+	handleFileInput(e.target.files[0])
+	e.target.value = ''
 }
 
 const onTogglePaste = (e) => {

@@ -10,14 +10,14 @@ The project is currently a Work in Progress (WIP). The following core functional
 
 ### Exporting
 
-- Save to file: Export your entire station list as a structured `JSON` file.
-- Quick copy: One-click `Copy to clipboard` for fast sharing or manual backups.
+- ✅ Save to file: Export your entire station list as a structured `JSON` file.
+- ✅ Quick copy: One-click `Copy to clipboard` for fast sharing or manual backups.
 
 ### Importing
 
-- Flexible input: Restore stations via `JSON` file upload or direct `Paste` from clipboard.
-- Smart merging: Add imported stations to your current list without losing your existing favorites.
-- Full override: Replace your current favourites entirely with a new imported list for a fresh start.
+- ⬜ Flexible input: Restore stations via `JSON` file upload or direct `Paste` from clipboard.
+- ⬜ Smart merging: Add imported stations to your current list without losing your existing favorites.
+- ⬜ Full override: Replace your current favourites entirely with a new imported list for a fresh start.
 
 ## Technical note
 
