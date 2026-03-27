@@ -24,7 +24,8 @@
     transition:
         background-color var(--ease-base),
         scale var(--ease-base),
-        color var(--ease-base) opacity var(--ease-base);
+        color var(--ease-base),
+        opacity var(--ease-base);
 
     &:hover,
     &[aria-pressed="true"] {

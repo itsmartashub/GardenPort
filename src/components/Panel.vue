@@ -109,18 +109,20 @@ const onInputPaste = (e) => {
 					@click="applyMerge"
 					title="Keep your existing stations and add new ones"
 				>
-					<span class="gp-btn__icon" aria-hidden="true">➕</span> Add to my stations
+					<!-- <span class="gp-btn__icon" aria-hidden="true">➕</span> Add to my stations -->
+					➕ Add to my stations
 				</button>
 				<button
 					class="gp-btn gp-btn--warn"
 					@click="applyOverride"
 					title="Remove all existing stations and use imported ones"
 				>
-					<span class="gp-btn__icon" aria-hidden="true">🔄</span>
-					Replace all
+					<!-- <span class="gp-btn__icon" aria-hidden="true">🔄</span> -->
+					🔄 Replace all
 				</button>
 				<button class="gp-btn gp-btn--err" @click="cancelImport" title="Cancel import operation">
-					<span class="gp-btn__icon" aria-hidden="true">✖</span> Cancel
+					<!-- <span class="gp-btn__icon" aria-hidden="true">✖</span> Cancel -->
+					✖ Cancel
 				</button>
 			</section>
 		</Transition>
