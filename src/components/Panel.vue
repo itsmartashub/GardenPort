@@ -3,7 +3,7 @@ import { ref, computed } from 'vue'
 import { useFavsManager, PANEL_STATE } from '@/composables/useFavsManager.js'
 
 // Composables
-const { state, toggleExport, toggleImport, togglePaste } = useFavsManager()
+const { state, toggleExport, toggleImport, togglePaste, exportFile, exportCopy } = useFavsManager()
 
 // Elements
 const textareaRef = ref(null)
@@ -25,13 +25,6 @@ const onFileChange = (e) => {
 
 const onTogglePaste = (e) => {
 	console.log('onTogglePaste', e)
-}
-
-const exportFile = (e) => {
-	console.log('exportFile', e)
-}
-const exportCopy = (e) => {
-	console.log('exportCopy', e)
 }
 
 const applyMerge = () => {
