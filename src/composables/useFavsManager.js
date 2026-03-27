@@ -31,7 +31,7 @@ export function useFavsManager() {
 		console.log(raw)
 
 		// TODO: add Toast here
-		if (!raw === '[]') return console.log('No favourites found, nothing to export')
+		if (raw === '[]') return console.log('No favourites found, nothing to export')
 
 		const favList = JSON.parse(raw)
 		const favCounts = String(favList.length).padStart(3, '0') // start with 000 if only one digit, eg 001, 002, ...
@@ -45,8 +45,15 @@ export function useFavsManager() {
 		anchor.click()
 		URL.revokeObjectURL(anchor.href)
 	}
-	const exportCopy = (e) => {
-		console.log('exportCopy', e)
+	const exportCopy = () => {
+		console.log('exportCopy')
+
+		// TOOD: add Toast here instead of console.lgo
+		const raw = storage.exportRaw()
+		if (raw === '[]') return console.log('No favorites to copy')
+
+		// TOOD: add Toast here instead of console.lgo
+		navigator.clipboard.writeText(storage.exportRaw()).then(() => console.log('Copied to clipboard'))
 	}
 
 	return {
