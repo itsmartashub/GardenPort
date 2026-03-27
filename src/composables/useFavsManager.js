@@ -94,6 +94,13 @@ export function useFavsManager() {
 		_finalize()
 	}
 
+	const applyMerge = () => {
+		const finalData = storage.merge(pendingData.value)
+		storage.write(finalData)
+		console.log(`Merged - ${finalData.length} stations saved`)
+		_finalize()
+	}
+
 	const _finalize = () => {
 		pendingData.value = null
 		state.value = PANEL_STATE.IDLE
@@ -109,5 +116,6 @@ export function useFavsManager() {
 		exportCopy,
 		handleFileInput,
 		applyOverride,
+		applyMerge,
 	}
 }
