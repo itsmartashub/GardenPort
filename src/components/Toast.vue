@@ -43,7 +43,7 @@ const icons = {
 <style lang="scss">
 .toast-container {
 	position: fixed;
-	top: 24px;
+	top: 2.5rem;
 	left: 50%;
 	transform: translateX(-50%);
 	z-index: calc(var(--panel-z) + 1);
@@ -51,14 +51,14 @@ const icons = {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: var(--sp-sm);
+	gap: var(--sp-md);
 }
 
 .toast-list {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: var(--sp-sm);
+	gap: var(--sp-md);
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -101,10 +101,7 @@ const icons = {
 	}
 
 	&__icon {
-		color: currentColor;
-		font-size: 0.9rem;
-		flex-shrink: 0;
-		line-height: 1;
+		@extend .gp-btn__icon;
 	}
 
 	&__message {
@@ -112,18 +109,8 @@ const icons = {
 	}
 
 	&__close {
-		flex-shrink: 0;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding: var(--sp-xs);
-		border: none;
-		background: transparent;
-		color: inherit;
+		@extend .gp-btn__icon;
 		opacity: 0.45;
-		cursor: pointer;
-		border-radius: var(--br);
-		transition: opacity var(--ease-fast);
 
 		&:hover {
 			opacity: 1;
@@ -140,11 +127,11 @@ const icons = {
 
 .toast-enter-from {
 	opacity: 0;
-	transform: translateY(-10px);
+	transform: translateY(-1rem);
 }
 
 .toast-leave-to {
 	opacity: 0;
-	transform: translateY(-10px);
+	transform: translateY(-1rem);
 }
 </style>

@@ -32,15 +32,18 @@
         cursor: wait;
     }
 
-
     &:focus-visible {
         outline: 2px solid var(--c-txt);
         outline-offset: 2px;
     }
 
     &__icon {
+        padding: var(--sp-xs);
+        font-size: var(--fsz-sm);
+        flex-shrink: 0;
+        color: currentColor;
+        background: transparent;
         line-height: 1;
-        font-size: 0.8125rem;
     }
 
     &--primary {

@@ -4,10 +4,10 @@ const toasts = reactive([])
 let uid = 0
 
 const DURATION = {
-	info: 4000,
-	success: 4000,
-	warning: 5000,
-	error: 6000,
+	info: 2000,
+	success: 2000,
+	warning: 3000,
+	error: 3000,
 }
 
 export function useToast() {
