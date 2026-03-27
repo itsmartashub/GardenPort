@@ -109,6 +109,12 @@ export function useFavsManager() {
 		console.log('Operation cancelled')
 	}
 
+	const handlePasteInput = (value) => {
+		console.log(value)
+		const v = value.trim()
+		if (v.startsWith('[') && v.endsWith(']')) validateAndStage(v)
+	}
+
 	const _finalize = () => {
 		pendingData.value = null
 		state.value = PANEL_STATE.IDLE
@@ -126,5 +132,6 @@ export function useFavsManager() {
 		applyOverride,
 		applyMerge,
 		cancelImport,
+		handlePasteInput,
 	}
 }

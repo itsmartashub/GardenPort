@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, nextTick } from 'vue'
 import { useFavsManager, PANEL_STATE } from '@/composables/useFavsManager.js'
 
 // Composables
@@ -14,6 +14,7 @@ const {
 	applyOverride,
 	applyMerge,
 	cancelImport,
+	handlePasteInput,
 } = useFavsManager()
 
 // Elements
@@ -36,8 +37,14 @@ const onFileChange = (e) => {
 	e.target.value = ''
 }
 
-const onTogglePaste = (e) => {
-	console.log('onTogglePaste', e)
+const onTogglePaste = async () => {
+	console.log('onTogglePaste')
+	togglePaste()
+	await nextTick()
+	textareaRef.value?.focus()
+}
+const onInputPaste = (e) => {
+	handlePasteInput(e.target.value)
 }
 </script>
 
@@ -81,7 +88,7 @@ const onTogglePaste = (e) => {
 							ref="textareaRef"
 							class="gp-textarea"
 							placeholder="Paste JSON array here..."
-							@input="(e) => handlePasteInput(e.target.value)"
+							@input="onInputPaste"
 						/>
 					</div>
 				</Transition>
