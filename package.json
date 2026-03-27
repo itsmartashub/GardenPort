@@ -1,6 +1,6 @@
 {
-	"name": "radiogardenxport",
-	"description": "Import and export Radio Garden stations",
+	"name": "gardenport",
+	"description": "Backup your favourite Radio Garden stations",
 	"private": true,
 	"version": "1.0.0",
 	"type": "module",

@@ -1,5 +1,4 @@
 import { defineConfig } from 'wxt'
-
 // See https://wxt.dev/api/config.html
 export default defineConfig({
 	modules: ['@wxt-dev/module-vue'],
@@ -7,11 +6,13 @@ export default defineConfig({
 
 	// Override default chrome browser to Brave
 	webExt: {
-		disabled: false,
+		disabled: true,
 		// Manually point to my Brave exe
 		binaries: {
 			chrome: 'C:/Program Files/BraveSoftware/Brave-Browser-Beta/Application/brave.exe', // Change path for Mac/Linux
 		},
+		// This flag enables the Prompt API
+		chromiumArgs: ['--disable-features=DisableLoadExtensionCommandLineSwitch'],
 	},
 
 	manifest: {
@@ -21,18 +22,28 @@ export default defineConfig({
 		permissions: [],
 		host_permissions: ['https://radio.garden/*'],
 	},
-	// Vite config for SCSS + PostCSS autoprefixer
 	vite: () => ({
+		// server: {
+		// 	hmr: {
+		// 		overlay: false,
+		// 	},
+		// 	watch: { // <-- UNCOMMENT THIS
+		// 		usePolling: true,
+		// 		ignored: ['!**/assets/styles/**'],
+		// 	},
+		// },
 		css: {
+			// postcss: {
+			// 	plugins: [autoprefixer()],
+			// },
+			devSourcemap: true, // ← Enable source maps in dev
 			preprocessorOptions: {
 				scss: {
-					// global SCSS vars/mixins auto-imported
-					additionalData: `@use "@/styles/_vars" as *;`,
+					quietDeps: true,
+					api: 'modern-compiler',
+					additionalData: `@use "@/assets/styles/utils/_index.scss" as *;`,
 				},
 			},
-			// postcss: {
-			// 	plugins: [(await import('autoprefixer')).default()],
-			// },
 		},
 	}),
 })

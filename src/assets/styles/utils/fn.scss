@@ -1,0 +1,36 @@
+/*
+$color-var - the css var (eg. var(--c-primary))
+$l - lightness (defaults to 'l' for no change)
+$c - chroma (defaults to 'c' for no change)
+$h - hue (defaults to 'h' for no change)
+$a - alpha/opacity (defaults to 1)
+
+USAGE:
+.text-standard {
+  color: cmod(); 
+  // Result: oklch(from var(--c-txt) l c h / 1)
+}
+.text-faded {
+  color: cmod($a: 0.45);
+  // Result: oklch(from var(--c-txt) l c h / 0.45)
+}
+.brand-ghost {
+  background: cmod(var(--c-brand), $a: 0.2);
+  // Result: oklch(from var(--c-brand) l c h / 0.2)
+}
+.text-extra-bright {
+  // Makes the color 20% lighter than the original variable
+  color: cmod($l: "l + 0.2"); 
+  // Result: oklch(from var(--c-txt) l + 0.2 c h / 1)
+}
+*/
+@function cmod($color-var: var(--c-txt),
+  $l: "l",
+  $c: "c",
+  $h: "h",
+  $a: "1"
+
+) {
+  @return #{"oklch(from #{$color-var} #{$l} #{$c} #{$h} / #{$a})"}
+
+}

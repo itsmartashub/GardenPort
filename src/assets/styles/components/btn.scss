@@ -1,0 +1,90 @@
+// @use "@/assets/styles/utils/_index.scss" as *; // sa createShadowRootUi() ovo ne treba i kao da je oni u vite dovoljno, ali sa createIntegratedUi() i kad importujemo samo main.scss onako a ne svaki scss file u content.js, treba -> wtf
+
+.gp-btn {
+    width: 100%;
+    border: none;
+    border-radius: var(--br-btn);
+    padding: var(--sp-md);
+    font-weight: 700;
+    font-size: var(--fsz-xs);
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--c-txt);
+    background: cmod(currentColor, $a: 0.1);
+    transition:
+        background var(--ease-fast),
+        scale var(--ease-fast),
+        color var(--ease-fast);
+
+    &:hover,
+    &[aria-pressed="true"] {
+        background: cmod(currentColor, $a: 0.3);
+        scale: 0.98;
+    }
+
+
+    &:focus-visible {
+        outline: 2px solid var(--c-txt);
+        outline-offset: 2px;
+    }
+
+    &__icon {
+        line-height: 1;
+        font-size: 0.8125rem;
+    }
+
+    &--primary {
+        color: var(--c-txt);
+        background: cmod(currentColor, $a: 0.1);
+    }
+
+    &--import,
+    &--export {
+        background: cmod(currentColor, $a: 0.2);
+        box-shadow: inset 0 0 4px 2px cmod(currentColor, $a: 0.1);
+        font-size: var(--fsz-sm);
+        text-transform: uppercase;
+        border-radius: 50vw;
+
+        &:hover,
+        &[aria-pressed="true"] {
+            background: cmod(currentColor, $a: 0.3);
+            scale: 0.98;
+        }
+    }
+
+    // Variants
+    &--export {
+        color: var(--c-export);
+    }
+
+    &--import {
+        color: var(--c-import);
+    }
+
+    &--succ,
+    &--warn,
+    &--err {
+        border-radius: calc(var(--br-btn) * 0.8);
+        background: cmod(currentColor, $a: 0.1);
+    }
+
+    &--succ {
+        color: var(--c-succ);
+        // background: cmod(var(--c-succ), $l: "15%");
+    }
+
+    &--warn {
+        color: var(--c-warn);
+        // background: cmod(var(--c-warn), $l: "15%");
+    }
+
+    &--err {
+        color: var(--c-err);
+        // background: cmod(var(--c-err), $l: "15%");
+    }
+}
