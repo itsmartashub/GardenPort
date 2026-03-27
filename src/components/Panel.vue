@@ -58,7 +58,7 @@ const onInputPaste = (e) => {
 
 		<div class="gp-panel__actions">
 			<button class="gp-btn gp-btn--export" :class="{ active: isExport }" @click="toggleExport">
-				<span class="rg-btn__icon">⬆</span> Export
+				<span class="gp-btn__icon">⬆</span> Export
 			</button>
 			<button
 				class="gp-btn gp-btn--import"

@@ -9,9 +9,9 @@
 					role="alert"
 					@click="toast.remove(t.id)"
 				>
-					<span class="toast__icon" aria-hidden="true">{{ icons[t.type] }}</span>
+					<span class="toast__icon gp-btn__icon" aria-hidden="true">{{ icons[t.type] }}</span>
 					<span class="toast__message">{{ t.message }}</span>
-					<button class="toast__close" @click.stop="toast.remove(t.id)" aria-label="Dismiss">
+					<button class="toast__close gp-btn__icon" @click.stop="toast.remove(t.id)" aria-label="Dismiss">
 						<svg width="12" height="12" viewBox="0 0 12 12" fill="none">
 							<path
 								d="M2 2l8 8M10 2l-8 8"
@@ -100,16 +100,11 @@ const icons = {
 		background-color: var(--c-bg);
 	}
 
-	&__icon {
-		@extend .gp-btn__icon;
-	}
-
 	&__message {
 		flex: 1;
 	}
 
 	&__close {
-		@extend .gp-btn__icon;
 		opacity: 0.45;
 
 		&:hover {
