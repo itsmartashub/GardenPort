@@ -32,7 +32,7 @@ export function useFavsManager() {
 		const raw = storage.exportRaw()
 		console.log(raw)
 
-		// TODO: add Toast here
+		// TOOD: add Toast here instead of console.lgo
 		if (raw === '[]') return console.log('No favourites found, nothing to export')
 
 		const favList = JSON.parse(raw)
@@ -74,22 +74,63 @@ export function useFavsManager() {
 
 	const validateAndStage = (raw) => {
 		try {
-			const parsed = JSON.parse(raw.trim())
+			const trimmed = raw.trim()
 
-			// TODO: add Toast here
-			if (!Array.isArray(parsed)) return console.log('Must be a JSON array')
+			// size limit (eg 5MB)
+			if (trimmed.length > 5 * 1024 * 1024) {
+				// TOOD: add Toast here instead of console.lgo
+				console.log('File too large')
+				return
+			}
+
+			const parsed = JSON.parse(trimmed)
+
+			// type check
+			if (!Array.isArray(parsed)) {
+				// TOOD: add Toast here instead of console.lgo
+				console.log('Must be array')
+				return
+			}
+
+			// limit array size
+			if (parsed.length > 10000) {
+				// TOOD: add Toast here instead of console.lgo
+				console.log('Too many items')
+				return
+			}
+
+			// validate each item
+			const isValid = parsed.every((item) => {
+				// must be string
+				if (typeof item !== 'string') return false
+
+				// lenght limit per item
+				if (item.length > 100) return false
+
+				// check for dangerous patterns
+				if (item === '__proto__' || item === 'constructor' || item === 'prototype') return false
+
+				// control character check
+				if (/[\x00-\x1F\x7F]/.test(item)) return false
+
+				return true
+			})
+
+			if (!isValid) {
+				console.log('Invalid items detected')
+				return
+			}
+
 			pendingData.value = parsed
-			// console.log(pendingData.value)
 			state.value = PANEL_STATE.DECISION
-			console.log(`${parsed.length} stations ready - choose mode`)
-		} catch {
+		} catch (error) {
 			console.log('Invalid JSON')
 		}
 	}
 
 	const applyOverride = () => {
 		storage.write(pendingData.value)
-		// TODO: add Toast here
+		// TOOD: add Toast here instead of console.lgo
 		console.log(`Overridden - ${pendingData.value.length} stations saved`)
 		_finalize()
 	}
@@ -97,7 +138,7 @@ export function useFavsManager() {
 	const applyMerge = () => {
 		const finalData = storage.merge(pendingData.value)
 		storage.write(finalData)
-		// TODO: add Toast here
+		// TOOD: add Toast here instead of console.lgo
 		console.log(`Merged - ${finalData.length} stations saved`)
 		_finalize()
 	}
@@ -105,7 +146,7 @@ export function useFavsManager() {
 	const cancelImport = () => {
 		pendingData.value = null
 		state.value = PANEL_STATE.IDLE
-		// TODO: add Toast here
+		// TOOD: add Toast here instead of console.lgo
 		console.log('Operation cancelled')
 	}
 
