@@ -4,7 +4,7 @@
     padding: var(--sp-md);
     font-size: var(--fsz-xs);
     font-weight: 700;
-    text-align: center;
+    // text-align: center;
     border: none;
     border-radius: var(--br-btn);
     cursor: pointer;
@@ -16,7 +16,7 @@
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    grid-template-columns: min-content 1fr;
     gap: var(--sp-sm);
     letter-spacing: 0.04em;
     color: var(--c-txt);
@@ -60,6 +60,7 @@
 
     &--import,
     &--export {
+        justify-content: center;
         background-color: cmod(currentColor, $a: 0.2);
         box-shadow: inset 0 0 0 2px cmod(currentColor, $a: 0.05);
         font-size: var(--fsz-sm);

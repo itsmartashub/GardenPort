@@ -73,18 +73,18 @@ const onInputPaste = (e) => {
 		<Transition name="sub" mode="out-in">
 			<section v-if="isExport" class="gp-submenu">
 				<button class="gp-btn" @click="exportFile" :disabled="isExporting">
-					{{ isExporting ? 'Exporting...' : 'Save as .json' }}
+					{{ isExporting ? 'Saving...' : '📂 Save as file' }}
 				</button>
 				<button class="gp-btn" @click="exportCopy" :disabled="isCopying">
-					{{ isCopying ? 'Copying...' : 'Copy to Clipboard' }}
+					{{ isCopying ? 'Copying...' : '📋 Copy to clipboard' }}
 				</button>
 			</section>
 
 			<!-- IMPORT ACTIVE SUBMENU UI -->
 			<section v-else-if="isImport" key="import" class="gp-submenu">
-				<button class="gp-btn" @click="triggerFileInput">Select JSON File</button>
+				<button class="gp-btn" @click="triggerFileInput">📁 Upload file</button>
 				<button class="gp-btn" :class="{ 'gp-btn--active': isPaste }" @click="onTogglePaste">
-					Paste Raw String
+					📋 Paste from clipboard
 				</button>
 			</section>
 
@@ -102,11 +102,26 @@ const onInputPaste = (e) => {
 
 			<!-- IMPORT ACTIVE - DECISION SUBMENU UI -->
 			<section v-else-if="isDecision" class="gp-submenu gp-decision">
-				<h3 class="gp-subtitle">Choose import mode:</h3>
+				<h3 class="gp-subtitle">How would you like to import?</h3>
 
-				<button class="gp-btn gp-btn--succ" @click="applyMerge">Merge (keep old)</button>
-				<button class="gp-btn gp-btn--warn" @click="applyOverride">Override all</button>
-				<button class="gp-btn gp-btn--err" @click="cancelImport">Discard</button>
+				<button
+					class="gp-btn gp-btn--succ"
+					@click="applyMerge"
+					title="Keep your existing stations and add new ones"
+				>
+					<span class="gp-btn__icon" aria-hidden="true">➕</span> Add to my stations
+				</button>
+				<button
+					class="gp-btn gp-btn--warn"
+					@click="applyOverride"
+					title="Remove all existing stations and use imported ones"
+				>
+					<span class="gp-btn__icon" aria-hidden="true">🔄</span>
+					Replace all
+				</button>
+				<button class="gp-btn gp-btn--err" @click="cancelImport" title="Cancel import operation">
+					<span class="gp-btn__icon" aria-hidden="true">✖</span> Cancel
+				</button>
 			</section>
 		</Transition>
 
