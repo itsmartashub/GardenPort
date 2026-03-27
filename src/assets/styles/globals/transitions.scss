@@ -1,11 +1,12 @@
 // Slide-fade transition for sub-menus
 .sub-enter-active,
 .sub-leave-active {
-    transition: opacity var(--ease-base), translate var(--ease-base);
+    transition: opacity var(--ease-base), translate var(--ease-base), filter var(--ease-base);
 }
 
 .sub-enter-from,
 .sub-leave-to {
     opacity: 0;
     translate: 0 -6px;
+    filter: blur(2px);
 }

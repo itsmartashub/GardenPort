@@ -56,54 +56,50 @@ const onInputPaste = (e) => {
 			<button class="gp-btn gp-btn--export" :class="{ active: isExport }" @click="toggleExport">
 				<span class="rg-btn__icon">⬆</span> Export
 			</button>
-			<button class="gp-btn gp-btn--import" :class="{ active: isImport }" @click="toggleImport">
+			<button
+				class="gp-btn gp-btn--import"
+				:class="{ active: isImport || isPaste || isDecision }"
+				@click="toggleImport"
+			>
 				<span class="gp-btn__icon">⬇</span> Import
 			</button>
 		</div>
 
 		<!-- EXPORT ACTIVE SUBMENU UI -->
-		<Transition name="sub">
-			<div v-if="isExport" class="gp-submenu">
-				<h3 class="gp-subtitle">export methods</h3>
-
+		<Transition name="sub" mode="out-in">
+			<section v-if="isExport" class="gp-submenu">
 				<button class="gp-btn" @click="exportFile">Save as .json</button>
 				<button class="gp-btn" @click="exportCopy">Copy to Clipboard</button>
-			</div>
-		</Transition>
+			</section>
 
-		<!-- IMPORT ACTIVE SUBMENU UI -->
-		<Transition name="sub">
-			<div v-if="isImport || isPaste" class="gp-submenu">
-				<h3 class="gp-subtitle">import methods</h3>
-
+			<!-- IMPORT ACTIVE SUBMENU UI -->
+			<section v-else-if="isImport" key="import" class="gp-submenu">
 				<button class="gp-btn" @click="triggerFileInput">Select JSON File</button>
 				<button class="gp-btn" :class="{ 'gp-btn--active': isPaste }" @click="onTogglePaste">
 					Paste Raw String
 				</button>
+			</section>
 
-				<Transition name="sub">
-					<div class="gp-textarea-container">
-						<textarea
-							v-if="isPaste"
-							ref="textareaRef"
-							class="gp-textarea"
-							placeholder="Paste JSON array here..."
-							@input="onInputPaste"
-						/>
-					</div>
-				</Transition>
-			</div>
-		</Transition>
+			<!-- IMPORT ACTIVE - PASTE SUBMENU UI -->
+			<section v-else-if="isPaste" key="paste" class="gp-submenu">
+				<div class="gp-textarea-container">
+					<textarea
+						ref="textareaRef"
+						class="gp-textarea"
+						placeholder='Paste JSON array like: ["id1","id2"]'
+						@input="onInputPaste"
+					/>
+				</div>
+			</section>
 
-		<!-- IMPORT/EXPORT DECISION ACTIVE BLOCK UI -->
-		<Transition name="sub">
-			<div v-if="isDecision" class="gp-submenu gp-decision">
-				<h3 class="gp-subtitle">import ready</h3>
+			<!-- IMPORT ACTIVE - DECISION SUBMENU UI -->
+			<section v-else-if="isDecision" class="gp-submenu gp-decision">
+				<h3 class="gp-subtitle">Choose import mode:</h3>
 
 				<button class="gp-btn gp-btn--succ" @click="applyMerge">Merge (keep old)</button>
 				<button class="gp-btn gp-btn--warn" @click="applyOverride">Override all</button>
 				<button class="gp-btn gp-btn--err" @click="cancelImport">Discard</button>
-			</div>
+			</section>
 		</Transition>
 
 		<!-- Hidden file input -->
@@ -117,7 +113,6 @@ const onInputPaste = (e) => {
 	top: var(--panel-gap);
 	right: var(--panel-gap);
 	display: grid;
-	// flex-direction: column;
 	align-content: center;
 	gap: var(--sp-sm);
 	width: var(--panel-w);
@@ -126,14 +121,14 @@ const onInputPaste = (e) => {
 	background: var(--c-bg);
 	color: var(--c-txt);
 	border: 1px solid var(--c-border);
-	border-radius: var(--br);
+	border-radius: var(--br-panel);
 	box-shadow: 0 2rem 6rem oklch(0% 0 0 / 0.45);
 	backdrop-filter: var(--filter-glass);
 
 	&__actions {
 		display: grid;
+		align-content: center;
 		gap: var(--sp-sm);
-		margin-bottom: var(--sp-2xl);
 	}
 
 	&__file-input {
@@ -141,53 +136,39 @@ const onInputPaste = (e) => {
 	}
 }
 
-.gp-title,
-.gp-subtitle {
-	text-align: center;
-	font-weight: bold;
-}
-.gp-title {
-	font-size: var(--fsz-md);
-	letter-spacing: 0.12em;
-	text-align: center;
-	color: cmod(var(--c-txt), 0.65);
-	margin-bottom: var(--sp-lg);
-}
-.gp-subtitle {
-	margin-bottom: var(--sp-lg);
-	font-size: var(--fsz-base);
-}
-
 .gp-submenu {
-	display: flex;
-	flex-direction: column;
+	display: grid;
+	align-content: center;
 	gap: var(--sp-sm);
+	margin-top: var(--sp-2xl);
 }
 
 .gp-textarea-container {
 	width: 100%;
 	overflow: hidden;
-}
-.gp-textarea {
-	width: 100%;
-	height: 5rem;
-	padding: var(--sp-sm);
-	font-size: var(--fsz-xxs);
-	color: var(--c-txt);
-	background-color: cmod(var(--c-import), $a: 0.05);
-	border: 1px solid cmod(var(--c-import), $a: 0.1);
-	border-radius: var(--br-sub);
+	margin-top: var(--sp-sm);
 
-	outline: none;
-	resize: none;
+	textarea {
+		width: 100%;
+		height: 5rem;
+		padding: var(--sp-sm);
+		font-size: var(--fsz-xxs);
+		color: var(--c-txt);
+		background-color: cmod(var(--c-import), $a: 0.05);
+		border: 1px solid cmod(var(--c-import), $a: 0.1);
+		border-radius: var(--br);
 
-	&::placeholder {
-		color: cmod(var(--c-import), $a: 0.8);
-	}
+		outline: none;
+		resize: none;
 
-	&:focus {
-		border-color: cmod(var(--c-import), $a: 0.1);
-		background-color: cmod(var(--c-import), $a: 0.12);
+		&::placeholder {
+			color: cmod(var(--c-import), $a: 0.8);
+		}
+
+		&:focus {
+			border-color: cmod(var(--c-import), $a: 0.1);
+			background-color: cmod(var(--c-import), $a: 0.12);
+		}
 	}
 }
 </style>

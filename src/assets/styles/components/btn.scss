@@ -15,15 +15,15 @@
     justify-content: center;
     gap: 0.5rem;
     color: var(--c-txt);
-    background: cmod(currentColor, $a: 0.1);
+    background-color: cmod(currentColor, $a: 0.1);
     transition:
-        background var(--ease-fast),
-        scale var(--ease-fast),
-        color var(--ease-fast);
+        background-color var(--ease-base),
+        scale var(--ease-base),
+        color var(--ease-base);
 
     &:hover,
     &[aria-pressed="true"] {
-        background: cmod(currentColor, $a: 0.3);
+        background-color: cmod(currentColor, $a: 0.3);
         scale: 0.98;
     }
 
@@ -40,20 +40,24 @@
 
     &--primary {
         color: var(--c-txt);
-        background: cmod(currentColor, $a: 0.1);
+        background-color: cmod(currentColor, $a: 0.1);
     }
 
     &--import,
     &--export {
-        background: cmod(currentColor, $a: 0.2);
+        background-color: cmod(currentColor, $a: 0.2);
         box-shadow: inset 0 0 4px 2px cmod(currentColor, $a: 0.1);
         font-size: var(--fsz-sm);
         text-transform: uppercase;
         border-radius: 50vw;
 
+        &.active {
+            scale: 1;
+        }
+
         &:hover,
         &[aria-pressed="true"] {
-            background: cmod(currentColor, $a: 0.3);
+            background-color: cmod(currentColor, $a: 0.3);
             scale: 0.98;
         }
     }
@@ -61,31 +65,41 @@
     // Variants
     &--export {
         color: var(--c-export);
+
+        &.active {
+            color: cmod(currentColor, $l: "25%");
+            background-color: var(--c-export);
+        }
     }
 
     &--import {
         color: var(--c-import);
+
+        &.active {
+            color: cmod(currentColor, $l: "25%");
+            background-color: var(--c-import);
+        }
     }
 
     &--succ,
     &--warn,
     &--err {
         border-radius: calc(var(--br-btn) * 0.8);
-        background: cmod(currentColor, $a: 0.1);
+        background-color: cmod(currentColor, $a: 0.1);
     }
 
     &--succ {
         color: var(--c-succ);
-        // background: cmod(var(--c-succ), $l: "15%");
+        // background-color: cmod(var(--c-succ), $l: "15%");
     }
 
     &--warn {
         color: var(--c-warn);
-        // background: cmod(var(--c-warn), $l: "15%");
+        // background-color: cmod(var(--c-warn), $l: "15%");
     }
 
     &--err {
         color: var(--c-err);
-        // background: cmod(var(--c-err), $l: "15%");
+        // background-color: cmod(var(--c-err), $l: "15%");
     }
 }
