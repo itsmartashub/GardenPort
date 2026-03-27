@@ -97,8 +97,16 @@ export function useFavsManager() {
 	const applyMerge = () => {
 		const finalData = storage.merge(pendingData.value)
 		storage.write(finalData)
+		// TODO: add Toast here
 		console.log(`Merged - ${finalData.length} stations saved`)
 		_finalize()
+	}
+
+	const cancelImport = () => {
+		pendingData.value = null
+		state.value = PANEL_STATE.IDLE
+		// TODO: add Toast here
+		console.log('Operation cancelled')
 	}
 
 	const _finalize = () => {
@@ -117,5 +125,6 @@ export function useFavsManager() {
 		handleFileInput,
 		applyOverride,
 		applyMerge,
+		cancelImport,
 	}
 }

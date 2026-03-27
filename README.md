@@ -16,7 +16,7 @@ The project is currently a Work in Progress (WIP). The following core functional
 ### Importing
 
 - ⬜ Flexible input: Restore stations via `JSON` file upload or direct `Paste` from clipboard.
-- ⬜ Smart merging: Add imported stations to your current list without losing your existing favorites.
+- ✅ Smart merging: Add imported stations to your current list without losing your existing favorites.
 - ✅ Full override: Replace your current favourites entirely with a new imported list for a fresh start.
 
 ## Technical note

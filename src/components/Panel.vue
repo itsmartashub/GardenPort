@@ -13,6 +13,7 @@ const {
 	handleFileInput,
 	applyOverride,
 	applyMerge,
+	cancelImport,
 } = useFavsManager()
 
 // Elements
@@ -37,10 +38,6 @@ const onFileChange = (e) => {
 
 const onTogglePaste = (e) => {
 	console.log('onTogglePaste', e)
-}
-
-const cancelImport = (e) => {
-	console.log('cancelImport', e)
 }
 </script>
 
