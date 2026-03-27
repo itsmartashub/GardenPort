@@ -1,5 +1,6 @@
 import { ref } from 'vue'
 import { useFavsStorage } from '@/composables/useFavsStorage'
+import { useToast } from '@/composables/useToast'
 
 // Panel UI states
 export const PANEL_STATE = {
@@ -12,6 +13,7 @@ export const PANEL_STATE = {
 
 export function useFavsManager() {
 	const storage = useFavsStorage()
+	const { toast } = useToast()
 
 	const state = ref(PANEL_STATE.IDLE)
 	const pendingData = ref(null)
@@ -67,10 +69,13 @@ export function useFavsManager() {
 			// Minimum loading time
 			await _delay()
 			// TODO: add success Toast
+			toast.success('Export successful')
+
 			console.log('Export successful')
 		} catch (error) {
 			console.error('Export failed:', error)
 			// TODO: add error Toast
+			toast.error('Export failed')
 		} finally {
 			isExporting.value = false
 		}
@@ -89,6 +94,7 @@ export function useFavsManager() {
 			if (raw === '[]') {
 				console.log('No favorites to copy')
 				// TODO: add Toast here
+				toast.error('No favorites to copy')
 				return
 			}
 
@@ -97,10 +103,12 @@ export function useFavsManager() {
 			// Minimum loading time
 			await _delay()
 			// TODO: add success Toast
+			toast.success('Copied to clipboard')
 			console.log('Copied to clipboard')
 		} catch (error) {
 			console.error('Copy failed:', error)
 			// TODO: add error Toast
+			toast.error('Copy failed')
 		} finally {
 			isCopying.value = false
 		}
@@ -120,6 +128,7 @@ export function useFavsManager() {
 		reader.onerror = () => {
 			console.error('File read error')
 			// TODO: add error Toast
+			toast.error('File read error')
 		}
 		reader.readAsText(file)
 	}
@@ -128,10 +137,10 @@ export function useFavsManager() {
 		try {
 			const trimmed = raw.trim()
 
-			// size limit (eg 5MB)
-			if (trimmed.length > 5 * 1024 * 1024) {
-				// TOOD: add Toast here instead of console.lgo
+			// size limit (eg 2MB)
+			if (trimmed.length > 2 * 1024 * 1024) {
 				console.log('File too large')
+				toast.warning('File too large')
 				return
 			}
 
@@ -139,15 +148,15 @@ export function useFavsManager() {
 
 			// type check
 			if (!Array.isArray(parsed)) {
-				// TOOD: add Toast here instead of console.lgo
 				console.log('Must be array')
+				toast.warning('Must be array')
 				return
 			}
 
 			// limit array size
 			if (parsed.length > 10000) {
-				// TOOD: add Toast here instead of console.lgo
 				console.log('Too many items')
+				toast.warning('Too many items')
 				return
 			}
 
@@ -170,6 +179,7 @@ export function useFavsManager() {
 
 			if (!isValid) {
 				console.log('Invalid items detected')
+				toast.error('Invalid items detected')
 				return
 			}
 
@@ -177,13 +187,13 @@ export function useFavsManager() {
 			state.value = PANEL_STATE.DECISION
 		} catch (error) {
 			console.log('Invalid JSON')
-			// TODO: add Toast here
+			toast.error('Invalid JSON')
 		}
 	}
 
 	const applyOverride = () => {
 		storage.write(pendingData.value)
-		// TOOD: add Toast here instead of console.lgo
+		toast.success(`Overridden - ${pendingData.value.length} stations saved`)
 		console.log(`Overridden - ${pendingData.value.length} stations saved`)
 		_finalize()
 	}
@@ -191,7 +201,7 @@ export function useFavsManager() {
 	const applyMerge = () => {
 		const finalData = storage.merge(pendingData.value)
 		storage.write(finalData)
-		// TOOD: add Toast here instead of console.lgo
+		toast.success(`Merged - ${finalData.length} stations saved`)
 		console.log(`Merged - ${finalData.length} stations saved`)
 		_finalize()
 	}
@@ -199,7 +209,7 @@ export function useFavsManager() {
 	const cancelImport = () => {
 		pendingData.value = null
 		state.value = PANEL_STATE.IDLE
-		// TOOD: add Toast here instead of console.lgo
+		toast.info('Operation cancelled')
 		console.log('Operation cancelled')
 	}
 

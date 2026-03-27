@@ -1,4 +1,4 @@
-// Slide-fade transition for sub-menus
+// SUB - slide-fade transition for sub-menus
 .sub-enter-active,
 .sub-leave-active {
     transition: opacity var(--ease-base), translate var(--ease-base), filter var(--ease-base);
@@ -10,3 +10,5 @@
     translate: 0 -6px;
     filter: blur(2px);
 }
+
+// TOASTS
