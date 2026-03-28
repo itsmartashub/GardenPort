@@ -1,8 +1,12 @@
-# GardenPort
+<div align="center">
+    <div>
+      <img src="https://github.com/itsmartashub/gpthemes/blob/main/assets/img/gp-logo-green-circle.png" alt="logo-for-gardenport-browser-extension" width="300" height="300"  />
+    </div>
+</div>
 
-**Backup, restore, and migrate your favorite Radio Garden stations with ease.**
-
-GardenPort is a lightweight browser extension designed to give you full control over your Radio Garden favorites. Whether you're switching browsers or just want a local backup of your global sonic discoveries, GardenPort has you covered.
+<h1 align="center">GardenPort</h1>
+<h3 align="center">Backup and restore your favorite Radio Garden stations with ease.</h3>
+<br/><br/>
 
 ## Features (WIP)
 
@@ -10,15 +14,15 @@ The project is currently a Work in Progress (WIP). The following core functional
 
 ### Exporting
 
-- ✅ Save to file: Export your entire station list as a structured `JSON` file.
-- ✅ Quick copy: One-click `Copy to clipboard` for fast sharing or manual backups.
+- Save to file: Export your entire station list as a structured `JSON` file.
+- Quick copy: One-click `Copy to clipboard` for fast sharing or manual backups.
 
 ### Importing
 
-- ⬜ Flexible input: Restore stations via `JSON` file upload or direct `Paste` from clipboard.
-- ✅ Smart merging: Add imported stations to your current list without losing your existing favorites.
-- ✅ Full override: Replace your current favourites entirely with a new imported list for a fresh start.
+- Flexible input: Restore stations via `JSON` file upload or direct `Paste` from clipboard.
+- Smart merging: Add imported stations to your current list without losing your existing favorites.
+- Full override: Replace your current favourites entirely with a new imported list for a fresh start.
 
 ## Technical note
 
-**GardenPort** interacts with the local storage used by Radio Garden to manage your "Favorite" list. **It is recommended to export a backup of your current stations before performing a "Full override" import.**
+**GardenPort** interacts with the local storage used by Radio Garden to manage your "Favorite" list. **It is recommended to export a backup of your current stations before performing a `Replace all` import.**
