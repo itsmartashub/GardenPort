@@ -11,8 +11,8 @@ export function useFavsStorage() {
 		const curr = read()
 		const combined = [...curr, ...incoming]
 
-		console.log(curr)
-		console.log(combined)
+		// console.log(curr)
+		// console.log(combined)
 
 		return [...new Set(combined)]
 	}

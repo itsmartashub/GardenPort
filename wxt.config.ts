@@ -47,9 +47,7 @@ export default defineConfig({
 	}),
 
 	manifest: {
-		name: 'GardenPort - Backup and restore Radio Garden favourite stations',
-		version: '1.0.0',
-		description: 'Export, import, and manage your Radio Garden favorite stations.',
+		name: 'GardenPort - Radio Garden Favorites Backup & Restore',
 		permissions: [],
 		host_permissions: ['https://radio.garden/*'],
 	},
