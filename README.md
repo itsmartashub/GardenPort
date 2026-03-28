@@ -1,12 +1,9 @@
-<div align="center">
-    <div>
-      <img src="https://github.com/itsmartashub/gardenport/blob/master/src/assets/img/gp-logo-green-circle.png" alt="logo-for-gardenport-browser-extension" width="500" height="500"  />
-    </div>
-</div>
+<img align="left" width="80" height="80"
+src=".github/repo_icon.png" alt="App icon">
 
-<h1 align="center">GardenPort</h1>
-<h3 align="center">Backup and restore your favorite Radio Garden stations with ease.</h3>
-<br/><br/>
+# GardenPort
+
+Backup and restore your favorite Radio Garden stations with ease
 
 ## Features (WIP)
 
