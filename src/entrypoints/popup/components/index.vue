@@ -1,7 +1,9 @@
 <template>
 	<div class="popup">
 		<header>
-			<h1>Garden<strong>Port</strong></h1>
+			<div class="gp-logo">
+				<h1>Garden<strong>Port</strong></h1>
+			</div>
 			<p>Backup, restore, and migrate your favorite <strong>Radio Garden</strong> stations</p>
 		</header>
 

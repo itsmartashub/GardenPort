@@ -1,7 +1,7 @@
 import { defineConfig } from 'wxt'
 // See https://wxt.dev/api/config.html
 export default defineConfig({
-	modules: ['@wxt-dev/module-vue'],
+	modules: ['@wxt-dev/module-vue', '@wxt-dev/auto-icons'],
 	srcDir: 'src',
 
 	// Override default chrome browser to Brave
@@ -15,12 +15,11 @@ export default defineConfig({
 		chromiumArgs: ['--disable-features=DisableLoadExtensionCommandLineSwitch'],
 	},
 
-	manifest: {
-		name: 'Radio Garden – Favorites Manager',
-		version: '1.0.0',
-		description: 'Export, import, and manage your Radio Garden favorite stations.',
-		permissions: [],
-		host_permissions: ['https://radio.garden/*'],
+	autoIcons: {
+		enabled: true,
+		baseIconPath: 'assets/img/fav/icon.png',
+		sizes: [128, 48, 32, 16],
+		// developmentIndicator: false,
 	},
 	vite: () => ({
 		// server: {
@@ -46,4 +45,12 @@ export default defineConfig({
 			},
 		},
 	}),
+
+	manifest: {
+		name: 'GardenPort - Backup and restore Radio Garden favourite stations',
+		version: '1.0.0',
+		description: 'Export, import, and manage your Radio Garden favorite stations.',
+		permissions: [],
+		host_permissions: ['https://radio.garden/*'],
+	},
 })
