@@ -1,6 +1,6 @@
 <div align="center">
     <div>
-      <img src="https://github.com/itsmartashub/gpthemes/blob/main/assets/img/gp-logo-green-circle.png" alt="logo-for-gardenport-browser-extension" width="300" height="300"  />
+      <img src="https://github.com/itsmartashub/gardenport/blob/master/src/assets/img/gp-logo-green-circle.png" alt="logo-for-gardenport-browser-extension" width="500" height="500"  />
     </div>
 </div>
 
