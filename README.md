@@ -1,8 +1,16 @@
-<img align="left" width="72" height="72" src="https://github.com/itsmartashub/GardenPort/blob/master/.github/repo-icon.png" alt="GardenPort icon">
-<!-- <img align="left" width="72" height="72" src="https://github.com/itsmartashub/GardenPort/blob/master/src/assets/img/gp-logo-green-orange-circle.png" alt="GardenPort icon"> -->
+<div align="center">
+  <img width="120" height="120" src="https://github.com/itsmartashub/GardenPort/blob/master/.github/repo-icon.png" alt="GardenPort icon" />
+  <h1>GardenPort</h1>
+  <p>Backup and restore your <a href="https://radio.garden">Radio Garden</a> favorites.<br/>Export to JSON or clipboard — import in seconds.</p>
 
-# GardenPort
-Backup and restore your [Radio Garden](https://radio.garden) favorites. Export to JSON or clipboard - import in seconds.
+  <img src="https://img.shields.io/badge/radio%20garden-compatible-1e4d35?style=flat&logo=radio&logoColor=%2369B87E&labelColor=%23102215&color=%231e4d35" alt="Radio Garden compatible" />
+  <img src="https://img.shields.io/badge/browser%20extension-supported-2e2a52?style=flat&logo=googlechrome&logoColor=%2369B87E&labelColor=%23102215&color=%232e2a52" alt="Browser Extension" />
+  <img src="https://img.shields.io/badge/data%20format-json-4a3520?style=flat&logo=json&logoColor=%2369B87E&labelColor=%23102215&color=%234a3520" alt="JSON" />
+  <img src="https://img.shields.io/badge/clipboard-copy%20%26%20paste-4a2318?style=flat&logo=clipboard&logoColor=%2369B87E&labelColor=%23102215&color=%234a2318" alt="Clipboard" />
+  <img src="https://img.shields.io/badge/privacy-100%25%20local-1a2e42?style=flat&logo=shield&logoColor=%2369B87E&labelColor=%23102215&color=%231a2e42" alt="Privacy" />
+</div>
+
+<br>
 
 **GardenPort** is a utility for **Radio Garden** listeners who want manual control over their `Favorite` station lists. It interacts with the local storage used by **Radio Garden** to allow for simple backups and restorations.
 
