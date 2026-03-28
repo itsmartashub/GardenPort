@@ -1,7 +1,7 @@
-<img align="left" width="100" height="100" src=".github/repo_icon.png" alt="GardenPort icon">
+<img align="left" width="72" height="72" src="https://github.com/itsmartashub/GardenPort/blob/master/.github/repo-icon.png" alt="GardenPort icon">
+<!-- <img align="left" width="72" height="72" src="https://github.com/itsmartashub/GardenPort/blob/master/src/assets/img/gp-logo-green-orange-circle.png" alt="GardenPort icon"> -->
 
 # GardenPort
-
 Backup and restore your [Radio Garden](https://radio.garden) favorites. Export to JSON or clipboard - import in seconds.
 
 **GardenPort** is a utility for **Radio Garden** listeners who want manual control over their `Favorite` station lists. It interacts with the local storage used by **Radio Garden** to allow for simple backups and restorations.
