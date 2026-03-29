@@ -11,4 +11,35 @@
     filter: blur(2px);
 }
 
-// TOASTS
+// FAB
+/* .fab-menu-enter-active,
+.fab-menu-leave-active {
+    transition: transform 0.18s ease, opacity 0.18s ease;
+    // transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.18s ease;
+
+}
+
+.fab-menu-enter-from,
+.fab-menu-leave-to {
+    transform: scale(0.6) translate(20px, -20px);
+    opacity: 0;
+}
+
+.fab-menu-enter-to,
+.fab-menu-leave-from {
+    transform: scale(1) translate(0, 0);
+    opacity: 1;
+} */
+
+/* ✨ The transition */
+.fab-menu-enter-active,
+.fab-menu-leave-active {
+    transition: opacity 0.2s ease, transform 0.25s ease;
+    transform-origin: top right;
+}
+
+.fab-menu-enter-from,
+.fab-menu-leave-to {
+    opacity: 0;
+    transform: scale(0.85) translate(6px, -6px);
+}

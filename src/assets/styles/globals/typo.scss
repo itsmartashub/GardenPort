@@ -15,7 +15,7 @@
 }
 
 .gp-title {
-    font-size: var(--fsz-md);
+    font-size: 1.2em;
     letter-spacing: 0.12em;
     text-align: center;
     margin-bottom: var(--sp-lg);
@@ -23,6 +23,7 @@
 }
 
 .gp-subtitle {
-    font-size: var(--fsz-sm);
+    font-size: 0.8em;
     margin-bottom: var(--sp-lg);
+    opacity: 0.6;
 }

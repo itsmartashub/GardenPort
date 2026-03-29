@@ -12,18 +12,18 @@
   --c-err: oklch(72% 0.19 25);
 
   // SIZING
+  --fab-gap: 1.25rem;
   --panel-w: clamp(12rem, 25vw, 15rem);
   --panel-z: 999999;
-  --panel-gap: 1.5rem;
+  --panel-gap: calc(var(--fab-gap) * 1.85);
+
+  --icon-sz: 1.35em;
 
   // FILTER
   --fx-blur: 20px;
   --fx-saturate: 180%;
   --fx-glass-opacity: 0.25;
   --filter-glass: blur(var(--fx-blur)) saturate(var(--fx-saturate));
-
-  // SIZES
-  --icon-sz: 1.35em;
 
   // RADIUS
   --br: 0.825rem;
