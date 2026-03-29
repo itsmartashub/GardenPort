@@ -1,4 +1,15 @@
 <script setup>
+import IconImport from '~icons/tabler/database-import'
+import IconExport from '~icons/tabler/database-export'
+import IconCopy from '~icons/tabler/copy'
+import IconFileExport from '~icons/tabler/file-export'
+import IconLoader from '~icons/tabler/loader'
+import IconFileImport from '~icons/tabler/file-import'
+import IconClipboard from '~icons/tabler/clipboard'
+import IconAdd from '~icons/tabler/playlist-add'
+import IconReplace from '~icons/tabler/list'
+import IconCancel from '~icons/tabler/x'
+
 import { ref, computed, nextTick } from 'vue'
 import { useFavsManager, PANEL_STATE } from '@/composables/useFavsManager.js'
 
@@ -58,14 +69,14 @@ const onInputPaste = (e) => {
 
 		<div class="gp-panel__actions">
 			<button class="gp-btn gp-btn--export" :class="{ active: isExport }" @click="toggleExport">
-				<span class="gp-btn__icon">⬆</span> Export
+				<IconExport /> Export
 			</button>
 			<button
 				class="gp-btn gp-btn--import"
 				:class="{ active: isImport || isPaste || isDecision }"
 				@click="toggleImport"
 			>
-				<span class="gp-btn__icon">⬇</span> Import
+				<IconImport /> Import
 			</button>
 		</div>
 
@@ -73,18 +84,23 @@ const onInputPaste = (e) => {
 		<Transition name="sub" mode="out-in">
 			<section v-if="isExport" class="gp-submenu">
 				<button class="gp-btn" @click="exportFile" :disabled="isExporting">
-					{{ isExporting ? 'Saving...' : '📂 Save as file' }}
+					<IconLoader v-if="isExporting" class="icon-spin" />
+					<IconFileExport v-else />
+					{{ isExporting ? 'Saving...' : 'Save as file' }}
 				</button>
+
 				<button class="gp-btn" @click="exportCopy" :disabled="isCopying">
-					{{ isCopying ? 'Copying...' : '📋 Copy to clipboard' }}
+					<IconLoader v-if="isCopying" class="icon-spin" />
+					<IconCopy v-else />
+					{{ isCopying ? 'Copying...' : 'Copy to clipboard' }}
 				</button>
 			</section>
 
 			<!-- IMPORT ACTIVE SUBMENU UI -->
 			<section v-else-if="isImport" key="import" class="gp-submenu">
-				<button class="gp-btn" @click="triggerFileInput">📁 Upload file</button>
+				<button class="gp-btn" @click="triggerFileInput"><IconFileImport /> Upload file</button>
 				<button class="gp-btn" :class="{ 'gp-btn--active': isPaste }" @click="onTogglePaste">
-					📋 Paste from clipboard
+					<IconClipboard /> Paste from clipboard
 				</button>
 			</section>
 
@@ -109,20 +125,17 @@ const onInputPaste = (e) => {
 					@click="applyMerge"
 					title="Keep your existing stations and add new ones"
 				>
-					<!-- <span class="gp-btn__icon" aria-hidden="true">➕</span> Add to my stations -->
-					➕ Add to my stations
+					<IconAdd /> Add to my stations
 				</button>
 				<button
 					class="gp-btn gp-btn--warn"
 					@click="applyOverride"
 					title="Remove all existing stations and use imported ones"
 				>
-					<!-- <span class="gp-btn__icon" aria-hidden="true">🔄</span> -->
-					🔄 Replace all
+					<IconReplace /> Replace all
 				</button>
 				<button class="gp-btn gp-btn--err" @click="cancelImport" title="Cancel import operation">
-					<!-- <span class="gp-btn__icon" aria-hidden="true">✖</span> Cancel -->
-					✖ Cancel
+					<IconCancel /> Cancel
 				</button>
 			</section>
 		</Transition>

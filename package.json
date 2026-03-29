@@ -70,10 +70,12 @@
 		"vue": "^3.5.29"
 	},
 	"devDependencies": {
+		"@iconify-json/tabler": "^1.2.33",
 		"@wxt-dev/auto-icons": "^1.1.1",
 		"@wxt-dev/module-vue": "^1.0.3",
 		"sass-embedded": "^1.98.0",
 		"typescript": "^5.9.3",
+		"unplugin-icons": "^23.0.1",
 		"vue-tsc": "^3.2.5",
 		"wxt": "^0.20.20"
 	}

@@ -27,6 +27,11 @@
         color var(--ease-base),
         opacity var(--ease-base);
 
+    svg {
+        width: var(--icon-sz);
+        height: var(--icon-sz);
+    }
+
     &:hover,
     &[aria-pressed="true"] {
         background-color: cmod(currentColor, $a: 0.3);
@@ -47,7 +52,7 @@
     &__icon {
         @extend %btn-shared;
         padding: var(--sp-xs);
-        font-size: var(--fsz-sm);
+        font-size: 1.3em;
         color: currentColor;
         background: transparent;
         line-height: 1;

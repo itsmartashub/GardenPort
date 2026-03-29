@@ -1,4 +1,7 @@
 import { defineConfig } from 'wxt'
+
+import Icons from 'unplugin-icons/vite'
+
 // See https://wxt.dev/api/config.html
 export default defineConfig({
 	modules: ['@wxt-dev/module-vue', '@wxt-dev/auto-icons'],
@@ -22,15 +25,12 @@ export default defineConfig({
 		// developmentIndicator: false,
 	},
 	vite: () => ({
-		// server: {
-		// 	hmr: {
-		// 		overlay: false,
-		// 	},
-		// 	watch: { // <-- UNCOMMENT THIS
-		// 		usePolling: true,
-		// 		ignored: ['!**/assets/styles/**'],
-		// 	},
-		// },
+		plugins: [
+			Icons({
+				compiler: 'vue3',
+				autoInstall: true,
+			}),
+		],
 		css: {
 			// postcss: {
 			// 	plugins: [autoprefixer()],
