@@ -31,8 +31,8 @@ body {
 	color: var(--c-txt);
 	background-image: linear-gradient(
 		to bottom right,
-		oklch(from var(--c-import) 22% c h / 1) 10%,
-		oklch(from var(--c-import) 15% c h / 1) 25%,
+		oklch(from var(--c-accent) 22% c h / 1) 10%,
+		oklch(from var(--c-accent) 15% c h / 1) 25%,
 		var(--c-bg) 50%
 	);
 	font-family:
@@ -83,16 +83,6 @@ hr {
 	/* border-top: 1px solid var(--c-border); */
 }
 
-@keyframes pulse {
-	0%,
-	100% {
-		opacity: 1;
-	}
-	50% {
-		opacity: 0.35;
-	}
-}
-
 svg {
 	width: var(--icon-sz);
 	height: var(--icon-sz);
@@ -101,6 +91,7 @@ svg {
 button,
 a {
 	&:focus-visible {
-		outline: 1px solid currentColor;
+		outline: 2px solid currentColor;
+		outline-offset: 2px;
 	}
 }

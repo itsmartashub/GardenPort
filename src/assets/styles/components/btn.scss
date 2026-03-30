@@ -24,6 +24,7 @@
     transition:
         background-color var(--ease-base),
         scale var(--ease-base),
+        translate var(--ease-base),
         color var(--ease-base),
         opacity var(--ease-base);
 
@@ -45,7 +46,7 @@
     }
 
     &:focus-visible {
-        outline: 2px solid var(--c-txt);
+        outline: 2px solid currentColor;
         outline-offset: 2px;
     }
 
@@ -74,8 +75,8 @@
         text-transform: uppercase;
         border-radius: 50vw;
 
-        &.active {
-            scale: 1;
+        &:active {
+            translate: 0 1px;
         }
 
         &:hover,

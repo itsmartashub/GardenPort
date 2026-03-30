@@ -8,15 +8,18 @@
 import logoSrc from '@/assets/img/logo-cc-green.png'
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .gp-logo {
+	display: grid;
+	place-items: center;
+	justify-content: center;
 	cursor: pointer;
 	transition:
 		scale var(--ease-base),
 		rotate var(--ease-base);
+	animation: pulse 2.4s ease-in-out infinite;
 
 	&:hover {
-		// scale: 0.9;
 		scale: 1.2;
 		rotate: 45deg;
 

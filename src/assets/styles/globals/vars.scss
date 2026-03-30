@@ -6,13 +6,14 @@
   --c-border: oklch(100% 0 0 / 0.06);
   --c-border-dash: oklch(100% 0 0 / 0.13);
 
-  --c-import: oklch(83.94% 0.152 150.85);
+  --c-accent: oklch(83.94% 0.152 150.85);
+  --c-import: var(--c-accent);
   --c-export: oklch(78.80% 0.147 58.18);
-
   --c-succ: oklch(80% 0.16 150);
   --c-warn: oklch(78% 0.14 58);
   --c-err: oklch(72% 0.19 25);
 
+  --c-badge: var(--c-accent);
 
   // SIZING
   --fab-gap: 1.25rem;
