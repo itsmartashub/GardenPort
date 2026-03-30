@@ -1,0 +1,21 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    cursor: pointer;
+    font: inherit;
+    background: none;
+    border: none;
+}
+
+button,
+a {
+    &:focus-visible {
+        outline: 1px solid currentColor;
+    }
+}

@@ -1,4 +1,6 @@
 <script setup>
+import logoSrc from '@/assets/img/logo-cc-green.png'
+
 import IconImport from '~icons/tabler/database-import'
 import IconExport from '~icons/tabler/database-export'
 import IconCopy from '~icons/tabler/copy'
@@ -69,7 +71,7 @@ const onInputPaste = (e) => {
 
 <template>
 	<button class="gp-fab gp-logo" @click="togglePanel" :class="{ 'gp-fab--rotated': isPanelOpen }">
-		<img src="../assets/img/logo-cc-green.png" width="50" height="50" alt="GardenPort-logo" class="gp-logo__img" />
+		<img :src="logoSrc" width="50" height="50" alt="GardenPort-logo" class="gp-logo__img" />
 	</button>
 
 	<Transition name="fab-menu">
