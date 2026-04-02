@@ -63,7 +63,7 @@ const cards = [
 		<hr />
 
 		<!-- ─────────────────────────── CARDS ─────────────────────────── -->
-		<section class="popup__also" aria-labelledby="also-label">
+		<section class="popup__section" aria-labelledby="also-label">
 			<span id="also-label" class="popup__section-label">Also by creator</span>
 			<div class="popup__cards">
 				<a
@@ -192,7 +192,7 @@ const cards = [
 	&__section {
 		display: flex;
 		flex-direction: column;
-		gap: 0.5rem;
+		gap: var(--sp-md);
 	}
 
 	&__section-label {
@@ -203,19 +203,7 @@ const cards = [
 		margin-bottom: var(--sp-sm);
 	}
 
-	&__row {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: var(--sp-md);
-	}
-
 	// ── Also-by-us upsell cards ──────────────────────────────────────────────
-	&__also {
-		display: flex;
-		flex-direction: column;
-		gap: var(--sp-md);
-	}
-
 	&__cards {
 		display: flex;
 		flex-wrap: wrap;
