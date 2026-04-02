@@ -12,7 +12,7 @@
 
 <br>
 
-[![GardenPort](https://github.com/itsmartashub/GardenPort/blob/master/.github/screenshot.png)](https://github.com/itsmartashub/GardenPort/blob/master/.github/repo-banner.png)
+<img src="https://github.com/itsmartashub/GardenPort/blob/master/.github/repo-banner.png" alt="GardenPort Banner" width="100%"/>
 
 **GardenPort** is a utility for **Radio Garden** listeners who want manual control over their `Favorite` station lists. It interacts with the local storage used by **Radio Garden** to allow for simple backups and restorations.
 
