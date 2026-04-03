@@ -47,11 +47,11 @@ const isPanelOpen = ref(false)
 const togglePanel = () => (isPanelOpen.value = !isPanelOpen.value)
 
 const triggerFileInput = () => {
-	console.log('triggerFileInput')
+	// console.log('triggerFileInput')
 	fileInputRef.value?.click()
 }
 const onFileChange = (e) => {
-	console.log('onFileChange')
+	// console.log('onFileChange')
 	const file = e.target.files[0]
 	if (file) handleFileInput(file)
 
@@ -59,7 +59,7 @@ const onFileChange = (e) => {
 }
 
 const onTogglePaste = async () => {
-	console.log('onTogglePaste')
+	// console.log('onTogglePaste')
 	togglePaste()
 	await nextTick()
 	textareaRef.value?.focus()

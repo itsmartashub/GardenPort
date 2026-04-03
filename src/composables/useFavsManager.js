@@ -36,7 +36,7 @@ export function useFavsManager() {
 
 	// EXPORTING ===================================================
 	const exportFile = async () => {
-		console.log('exportFile')
+		// console.log('exportFile')
 
 		// Prevent multiple exports
 		if (isExporting.value) return
@@ -74,7 +74,7 @@ export function useFavsManager() {
 		}
 	}
 	const exportCopy = async () => {
-		console.log('exportCopy')
+		// console.log('exportCopy')
 
 		// Prevent multiple copies
 		if (isCopying.value) return
@@ -103,7 +103,7 @@ export function useFavsManager() {
 
 	// IMPORTING ===================================================
 	const handleFileInput = (file) => {
-		console.log('handleFileInput')
+		// console.log('handleFileInput')
 
 		if (!file) return
 
@@ -125,7 +125,7 @@ export function useFavsManager() {
 
 			// size limit (eg 2MB)
 			if (trimmed.length > 2 * 1024 * 1024) {
-				console.log('File too large')
+				// console.log('File too large')
 				toast.warning('File too large')
 				return
 			}
@@ -134,14 +134,14 @@ export function useFavsManager() {
 
 			// type check
 			if (!Array.isArray(parsed)) {
-				console.log('Must be array')
+				// console.log('Must be array')
 				toast.warning('Must be array')
 				return
 			}
 
 			// limit array size
 			if (parsed.length > 10000) {
-				console.log('Too many items')
+				// console.log('Too many items')
 				toast.warning('Too many items')
 				return
 			}
@@ -164,7 +164,7 @@ export function useFavsManager() {
 			})
 
 			if (!isValid) {
-				console.log('Invalid items detected')
+				// console.log('Invalid items detected')
 				toast.error('Invalid items detected')
 				return
 			}
@@ -172,7 +172,7 @@ export function useFavsManager() {
 			pendingData.value = parsed
 			state.value = PANEL_STATE.DECISION
 		} catch (error) {
-			console.log('Invalid JSON')
+			// console.log('Invalid JSON')
 			toast.error('Invalid JSON')
 		}
 	}
@@ -181,7 +181,7 @@ export function useFavsManager() {
 		await storage.write(pendingData.value)
 
 		toast.success(`Overridden - ${pendingData.value.length} stations saved`)
-		console.log(`Overridden - ${pendingData.value.length} stations saved`)
+		// console.log(`Overridden - ${pendingData.value.length} stations saved`)
 		_finalize()
 	}
 
@@ -192,7 +192,7 @@ export function useFavsManager() {
 		await storage.write(finalData)
 
 		toast.success(`Merged - ${finalData.length} stations saved`)
-		console.log(`Merged - ${finalData.length} stations saved`)
+		// console.log(`Merged - ${finalData.length} stations saved`)
 		_finalize()
 	}
 
@@ -201,11 +201,11 @@ export function useFavsManager() {
 		state.value = PANEL_STATE.IDLE
 
 		toast.info('Operation cancelled')
-		console.log('Operation cancelled')
+		// console.log('Operation cancelled')
 	}
 
 	const handlePasteInput = (value) => {
-		console.log(value)
+		// console.log(value)
 		const v = value.trim()
 
 		if (v.startsWith('[') && v.endsWith(']')) validateAndStage(v)

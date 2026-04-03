@@ -50,7 +50,7 @@ const _idbPut = async (value) => {
 
 // filters out empty strings so [""] is treated as empty
 const _parseList = (raw) => {
-	console.log(raw)
+	// console.log(raw)
 
 	try {
 		const parsed = JSON.parse(raw)
@@ -61,7 +61,6 @@ const _parseList = (raw) => {
 		return []
 	}
 }
-
 
 export function useFavsStorage() {
 	/*
