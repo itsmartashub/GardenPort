@@ -47,9 +47,9 @@ export function useFavsManager() {
 			const raw = storage.exportRaw()
 			console.log(raw)
 
-			if (raw === '[]') {
+			if (raw === '[]' || raw === '[""]' || !raw) {
 				console.log('No favourites found, nothing to export')
-				// TODO: add Toast here
+				toast.warning('No favourites found, nothing to export')
 				return
 			}
 
@@ -68,13 +68,11 @@ export function useFavsManager() {
 
 			// Minimum loading time
 			await _delay()
-			// TODO: add success Toast
 			toast.success('Export successful')
 
 			console.log('Export successful')
 		} catch (error) {
 			console.error('Export failed:', error)
-			// TODO: add error Toast
 			toast.error('Export failed')
 		} finally {
 			isExporting.value = false
@@ -91,10 +89,9 @@ export function useFavsManager() {
 		try {
 			const raw = storage.exportRaw()
 
-			if (raw === '[]') {
+			if (raw === '[]' || raw === '[""]' || !raw) {
 				console.log('No favorites to copy')
-				// TODO: add Toast here
-				toast.error('No favorites to copy')
+				toast.warning('No favorites to copy')
 				return
 			}
 
@@ -102,12 +99,10 @@ export function useFavsManager() {
 
 			// Minimum loading time
 			await _delay()
-			// TODO: add success Toast
 			toast.success('Copied to clipboard')
 			console.log('Copied to clipboard')
 		} catch (error) {
 			console.error('Copy failed:', error)
-			// TODO: add error Toast
 			toast.error('Copy failed')
 		} finally {
 			isCopying.value = false
@@ -127,7 +122,6 @@ export function useFavsManager() {
 		}
 		reader.onerror = () => {
 			console.error('File read error')
-			// TODO: add error Toast
 			toast.error('File read error')
 		}
 		reader.readAsText(file)
