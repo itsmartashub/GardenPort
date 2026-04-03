@@ -34,7 +34,7 @@ export function useFavsManager() {
 
 	const _delay = (ms = 250) => new Promise((resolve) => setTimeout(resolve, ms))
 
-	// IMPORTING
+	// EXPORTING ===================================================
 	const exportFile = async () => {
 		console.log('exportFile')
 
@@ -44,16 +44,14 @@ export function useFavsManager() {
 		isExporting.value = true
 
 		try {
-			const raw = storage.exportRaw()
-			console.log(raw)
+			const favList = await storage.read()
 
-			if (raw === '[]' || raw === '[""]' || !raw) {
-				console.log('No favourites found, nothing to export')
+			if (!favList.length) {
 				toast.warning('No favourites found, nothing to export')
 				return
 			}
 
-			const favList = JSON.parse(raw)
+			const raw = JSON.stringify(favList)
 			const favCounts = String(favList.length).padStart(3, '0')
 			const date = new Date().toISOString().split('T')[0]
 			const fileName = `radiogarden_backup_${date}_stations_${favCounts}.json`
@@ -66,11 +64,8 @@ export function useFavsManager() {
 			anchor.click()
 			URL.revokeObjectURL(anchor.href)
 
-			// Minimum loading time
 			await _delay()
 			toast.success('Export successful')
-
-			console.log('Export successful')
 		} catch (error) {
 			console.error('Export failed:', error)
 			toast.error('Export failed')
@@ -87,20 +82,17 @@ export function useFavsManager() {
 		isCopying.value = true
 
 		try {
-			const raw = storage.exportRaw()
+			const favList = await storage.read()
 
-			if (raw === '[]' || raw === '[""]' || !raw) {
-				console.log('No favorites to copy')
+			if (!favList.length) {
 				toast.warning('No favorites to copy')
 				return
 			}
 
-			await navigator.clipboard.writeText(raw)
+			await navigator.clipboard.writeText(JSON.stringify(favList))
 
-			// Minimum loading time
 			await _delay()
 			toast.success('Copied to clipboard')
-			console.log('Copied to clipboard')
 		} catch (error) {
 			console.error('Copy failed:', error)
 			toast.error('Copy failed')
@@ -109,7 +101,7 @@ export function useFavsManager() {
 		}
 	}
 
-	// IMPORTING
+	// IMPORTING ===================================================
 	const handleFileInput = (file) => {
 		console.log('handleFileInput')
 
@@ -185,16 +177,20 @@ export function useFavsManager() {
 		}
 	}
 
-	const applyOverride = () => {
-		storage.write(pendingData.value)
+	const applyOverride = async () => {
+		await storage.write(pendingData.value)
+
 		toast.success(`Overridden - ${pendingData.value.length} stations saved`)
 		console.log(`Overridden - ${pendingData.value.length} stations saved`)
 		_finalize()
 	}
 
-	const applyMerge = () => {
-		const finalData = storage.merge(pendingData.value)
-		storage.write(finalData)
+	const applyMerge = async () => {
+		const curr = await storage.read()
+		const finalData = [...new Set([...curr, ...pendingData.value])]
+
+		await storage.write(finalData)
+
 		toast.success(`Merged - ${finalData.length} stations saved`)
 		console.log(`Merged - ${finalData.length} stations saved`)
 		_finalize()
@@ -203,6 +199,7 @@ export function useFavsManager() {
 	const cancelImport = () => {
 		pendingData.value = null
 		state.value = PANEL_STATE.IDLE
+
 		toast.info('Operation cancelled')
 		console.log('Operation cancelled')
 	}
@@ -210,6 +207,7 @@ export function useFavsManager() {
 	const handlePasteInput = (value) => {
 		console.log(value)
 		const v = value.trim()
+
 		if (v.startsWith('[') && v.endsWith(']')) validateAndStage(v)
 	}
 
