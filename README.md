@@ -14,7 +14,7 @@
 
 <img src="https://github.com/itsmartashub/GardenPort/blob/master/.github/repo-banner.png" alt="GardenPort Banner" width="100%"/>
 
-**GardenPort** is a utility for **Radio Garden** listeners who want manual control over their `Favorite` station lists. It interacts with the local storage used by **Radio Garden** to allow for simple backups and restorations.
+**GardenPort** is a utility for **Radio Garden** listeners who want manual control over their `Favorite` station lists. It interacts with the `localStorage` and `IndexDB` used by **Radio Garden** to allow for simple backups and restorations.
 
 Whether you need to save your station list before clearing your browser data or you want to move your favorites to a different browser, **GardenPort** provides the tools to handle your data directly.
 
@@ -33,9 +33,31 @@ Whether you need to save your station list before clearing your browser data or 
 - **Smart merging**: Add imported stations to your current list without losing your existing favorites.
 - **Full override**: Replace your current favourites entirely with a new imported list for a fresh start.
 
+## Installation
+
+### Developer Mode Installation
+
+#### Chromium
+
+1. Download the `gardenport-*.*.*-chrome.zip` from the [Releases](https://github.com/itsmartashub/GardenPort/releases) and unzip.
+2. Open Chrome, go to `chrome://extensions/`
+3. Enable `Developer mode` in the top-right corner.
+4. Click `Load unpacked` and just drag the `zip` file
+
+#### Firefox
+
+1. Download the `gardenport-*.*.*-chrome.zip` from the [Releases](https://github.com/itsmartashub/GardenPort/releases)
+2. Open Firefox, go to `about:debugging`
+3. Enable `Add-on debugging` in `This Firefox`
+4. Click `Load Temporary Add-on` and select the `zip` file
+
 ## Technical note
 
 **GardenPort** interacts with the local storage used by Radio Garden to manage your "Favorite" list
 
 - **Recommendation**: Always export a backup of your current stations before performing a `Replace all` import.
 - **Privacy**: All operations happen locally. **GardenPort** does not track, collect, or upload your station data to any external servers.
+
+## Support
+
+If you can afford it and find GardenPort valuable, you can support its development with a `pay-what-you-want` contribution on [KO-FI](https://ko-fi.com/http417).
