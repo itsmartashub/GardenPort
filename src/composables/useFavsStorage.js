@@ -7,14 +7,20 @@ so must keep both stores in sync on every write */
 const IDB_NAME = 'ImmortalDB'
 const IDB_STORE = 'key-value-pairs'
 
-// no version arg - opens at whatever version radio gadenn already set, avoids "upgradeneeded'
-const _openDB = () =>
-	new Promise((resolve, reject) => {
-		const req = indexedDB.open(IDB_NAME)
+// cache the DB connection promise - opened once, reused forever
+let _dbPromise = null
 
-		req.onsuccess = (e) => resolve(e.target.result)
-		req.onerror = (e) => reject(e.target.error)
-	})
+// no version arg - opens at whatever version radio gadenn already set, avoids "upgradeneeded'
+const _openDB = () => {
+	if (!_dbPromise) {
+		_dbPromise = new Promise((resolve, reject) => {
+			const req = indexedDB.open(IDB_NAME)
+			req.onsuccess = (e) => resolve(e.target.result)
+			req.onerror = (e) => reject(e.target.error)
+		})
+	}
+	return _dbPromise
+}
 
 const _idbGet = async () => {
 	try {
