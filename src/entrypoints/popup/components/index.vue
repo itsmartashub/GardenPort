@@ -1,5 +1,5 @@
 <script setup>
-import Logo from '@/components/Logo.vue'
+import AppLogo from '@/components/AppLogo.vue'
 import AppBadge from '@/components/AppBadge.vue'
 import logoSrcDS from '@/assets/img/logo-ds.webp'
 import logoSrcGPT from '@/assets/img/logo-gpt.webp'
@@ -41,7 +41,7 @@ const cards = [
 		<!-- ─────────────────────────── HEADER ─────────────────────────── -->
 		<header class="popup__header">
 			<a class="popup__brand" :href="githubUrl" target="_blank" rel="noopener">
-				<Logo />
+				<AppLogo />
 				<div class="popup__title-wrap">
 					<h1 class="popup__title">Garden<span>Port</span></h1>
 					<p class="popup__subtitle">Radio Garden backup &amp; restore</p>
