@@ -14,7 +14,7 @@
 
 <img src="https://github.com/itsmartashub/GardenPort/blob/master/.github/repo-banner.png" alt="GardenPort Banner" width="100%"/>
 
-**GardenPort** is a utility for **Radio Garden** listeners who want manual control over their `Favorite` station lists. It interacts with the `localStorage` and `IndexDB` used by **Radio Garden** to allow for simple backups and restorations.
+**GardenPort** is a utility for **Radio Garden** listeners who want manual control over their `Favorite` station lists. It interacts with the local storage used by **Radio Garden** to allow for simple backups and restorations.
 
 Whether you need to save your station list before clearing your browser data or you want to move your favorites to a different browser, **GardenPort** provides the tools to handle your data directly.
 
@@ -53,7 +53,7 @@ Whether you need to save your station list before clearing your browser data or 
 
 ## Technical note
 
-**GardenPort** interacts with the local storage used by Radio Garden to manage your "Favorite" list
+**GardenPort** interacts with the `localStorage` and `IndexDB` used by Radio Garden to manage your "Favorite" list.
 
 - **Recommendation**: Always export a backup of your current stations before performing a `Replace all` import.
 - **Privacy**: All operations happen locally. **GardenPort** does not track, collect, or upload your station data to any external servers.
