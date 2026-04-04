@@ -15,9 +15,8 @@ import logoSrc from '@/assets/img/logo-cc-green.png'
 	justify-content: center;
 	cursor: pointer;
 	transition:
-		scale var(--ease-base),
-		rotate var(--ease-base);
-	animation: pulse 2.4s ease-in-out infinite;
+		scale var(--ease-bounce),
+		rotate var(--ease-bounce);
 
 	&:hover {
 		scale: 1.2;
@@ -35,7 +34,7 @@ import logoSrc from '@/assets/img/logo-cc-green.png'
 		width: var(--logo-sz);
 		height: var(--logo-sz);
 		border-radius: 50vw;
-		transition: box-shadow var(--ease-base);
+		transition: box-shadow var(--ease-bounce);
 
 		box-shadow:
 			0 0 0 3px cmod(var(--c-orange), $a: 0.3),

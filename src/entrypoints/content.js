@@ -1,10 +1,11 @@
 // import '@/assets/styles/main.scss'
-import '@/assets/styles/globals/vars.scss'
-import '@/assets/styles/globals/typo.scss'
-import '@/assets/styles/globals/transitions.scss'
-import '@/assets/styles/globals/base.scss'
-import '@/assets/styles/components/btn.scss'
+// // import '@/assets/styles/globals/vars.scss'
+// // import '@/assets/styles/globals/typo.scss'
+// // import '@/assets/styles/globals/transitions.scss'
+// // import '@/assets/styles/globals/base.scss'
+// // import '@/assets/styles/components/btn.scss'
 
+import '@/assets/styles/index.js'
 import { createApp } from 'vue'
 import App from '../App.vue'
 

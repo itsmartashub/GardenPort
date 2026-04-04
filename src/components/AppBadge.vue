@@ -16,20 +16,22 @@ const hasLabel = computed(() => !!props.label)
 
 <template>
 	<span
-		class="badge"
+		class="gp-badge"
 		:class="[`is-${size}`, `is-${variant}`, { 'is-icon-only': hasIcon && !hasLabel }]"
 		:style="{ '--c-badge': color }"
 	>
-		<span v-if="dot" class="badge-dot" aria-hidden="true"></span>
-		<component v-if="hasIcon" :is="icon" class="badge-icon" />
-		<span v-if="hasLabel" class="badge-label">
+		<span v-if="dot" class="gp-badge__dot" aria-hidden="true"></span>
+
+		<component v-if="hasIcon" :is="icon" class="gp-badge__icon" />
+
+		<span v-if="hasLabel" class="gp-badge__label">
 			{{ label }}
 		</span>
 	</span>
 </template>
 
-<style lang="scss" scoped>
-.badge {
+<style lang="scss">
+.gp-badge {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -48,9 +50,33 @@ const hasLabel = computed(() => !!props.label)
 	background-color: cmod(var(--c-badge), $a: 0.11);
 	border: 0.08em solid cmod(var(--c-badge), $a: 0.15);
 	transition:
-		background-color var(--ease-base),
-		color var(--ease-base),
-		border-color var(--ease-base);
+		background-color var(--ease-smooth),
+		color var(--ease-smooth),
+		border-color var(--ease-smooth);
+
+	&__icon {
+		width: var(--icon-sz);
+		height: var(--icon-sz);
+		flex-shrink: 0;
+	}
+
+	&__dot {
+		$dot-size: 0.525em;
+		width: $dot-size;
+		height: $dot-size;
+		border-radius: 50vw;
+		background-color: currentColor;
+		box-shadow: 0 0 6px cmod(currentColor, $a: 0.7);
+		animation: pulse 2.4s ease-in-out infinite;
+	}
+
+	&--linked {
+		transition: translate var(--ease-smooth);
+
+		&:hover {
+			translate: 0 3px;
+		}
+	}
 }
 
 .is-soft {
@@ -64,7 +90,7 @@ const hasLabel = computed(() => !!props.label)
 }
 
 .is-filled {
-	color: cmod(var(--c-badge), $l: "25%");
+	color: cmod(var(--c-badge), $l: '25%');
 	background-color: var(--c-badge);
 	border: 1px solid var(--c-badge);
 
@@ -84,25 +110,8 @@ const hasLabel = computed(() => !!props.label)
 	font-size: 0.9rem;
 }
 
-/* Square-ish scaling for icon-only mode */
 .is-icon-only {
 	padding: 0.4em;
-}
-
-.badge-icon {
-	width: var(--icon-sz);
-	height: var(--icon-sz);
-	flex-shrink: 0;
-}
-
-.badge-dot {
-	$dot-size: 0.525em;
-	width: $dot-size;
-	height: $dot-size;
-	border-radius: 50vw;
-	background-color: currentColor;
-	box-shadow: 0 0 6px cmod(currentColor, $a: 0.7);
-	animation: pulse 2.4s ease-in-out infinite;
 }
 
 @keyframes pulse {

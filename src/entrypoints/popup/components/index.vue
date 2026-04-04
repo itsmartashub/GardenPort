@@ -6,15 +6,9 @@ import logoSrcGPT from '@/assets/img/logo-gpt.webp'
 import IconCoffee from '~icons/tabler/coffee'
 import IconGithub from '~icons/tabler/brand-github'
 
-const manifest = browser.runtime.getManifest()
-const version = manifest.version
-// const extName = manifest.name
-const extName = 'GardenPort'
+import { KOFI_URL, GITHUB_REPO_URL } from '@/config/const'
 
-const repoSlug = extName.toLowerCase().replace(/\s+/g, '-') // "gardenport"
-const githubUrl = `https://github.com/itsmartashub/${repoSlug}`
-const releaseUrl = `${githubUrl}/releases/tag/v${version}`
-const kofiUrl = 'https://ko-fi.com/http417'
+const { version, releaseUrl } = useAppMeta()
 
 const cards = [
 	{
@@ -38,9 +32,8 @@ const cards = [
 
 <template>
 	<div class="popup">
-		<!-- ─────────────────────────── HEADER ─────────────────────────── -->
 		<header class="popup__header">
-			<a class="popup__brand" :href="githubUrl" target="_blank" rel="noopener">
+			<a class="popup__brand" :href="GITHUB_REPO_URL" target="_blank" rel="noopener">
 				<AppLogo />
 				<div class="popup__title-wrap">
 					<h1 class="popup__title">Garden<span>Port</span></h1>
@@ -53,7 +46,6 @@ const cards = [
 
 		<hr />
 
-		<!-- ─────────────────────────── TAGLINE ────────────────────────── -->
 		<p class="popup__tagline">
 			Backup &amp; restore your
 			<a class="popup__link" href="https://radio.garden" target="_blank" rel="noopener">Radio Garden</a>
@@ -62,7 +54,6 @@ const cards = [
 
 		<hr />
 
-		<!-- ─────────────────────────── CARDS ─────────────────────────── -->
 		<section class="popup__section" aria-labelledby="also-label">
 			<span id="also-label" class="popup__section-label">Also by creator</span>
 			<div class="popup__cards">
@@ -88,13 +79,12 @@ const cards = [
 
 		<hr />
 
-		<!-- ─────────────────────────── FOOTER ──────────────────────────── -->
 		<footer class="popup__footer">
-			<a class="popup__footer__link" :href="kofiUrl" target="_blank" rel="noopener">
+			<a class="popup__footer__link gp-badge--linked" :href="KOFI_URL" target="_blank" rel="noopener">
 				<AppBadge color="var(--c-orange)" label="Support on Ko-fi" :icon="IconCoffee" />
 			</a>
 
-			<a class="popup__footer__link" :href="releaseUrl" target="_blank" rel="noopener">
+			<a class="popup__footer__link gp-badge--linked" :href="releaseUrl" target="_blank" rel="noopener">
 				<AppBadge color="var(--c-orange)" :label="`v${version}`" :icon="IconGithub" />
 			</a>
 		</footer>
@@ -108,7 +98,6 @@ const cards = [
 	gap: var(--sp-lg);
 	padding: var(--sp-lg);
 
-	// ── Header ──────────────────────────────────────────────────────────────
 	&__header {
 		display: flex;
 		align-items: center;
@@ -119,6 +108,7 @@ const cards = [
 
 		&:hover {
 			color: var(--c-orange) !important;
+
 			.gp-logo {
 				scale: 1.2;
 				rotate: 45deg;
@@ -148,12 +138,12 @@ const cards = [
 		flex-direction: column;
 		gap: var(--sp-xs);
 
-		transition: translate var(--ease-base);
+		transition: translate var(--ease-smooth);
 	}
 
 	&__title,
 	&__subtitle {
-		transition: color var(--ease-base);
+		transition: color var(--ease-smooth);
 	}
 
 	&__title {
@@ -173,10 +163,6 @@ const cards = [
 		color: oklch(from currentColor 60% calc(c * 0.3) h / 1);
 	}
 
-	// ── Tagline ─────────────────────────────────────────────────────────────
-	// &__tagline {
-	// }
-
 	&__link {
 		color: var(--c-accent);
 		font-weight: 600;
@@ -188,7 +174,7 @@ const cards = [
 		}
 	}
 
-	// ── Sections ────────────────────────────────────────────────────────────
+	// SECTIONS
 	&__section {
 		display: flex;
 		flex-direction: column;
@@ -203,7 +189,7 @@ const cards = [
 		margin-bottom: var(--sp-sm);
 	}
 
-	// ── Also-by-us upsell cards ──────────────────────────────────────────────
+	// CARDS
 	&__cards {
 		display: flex;
 		flex-wrap: wrap;
@@ -228,13 +214,17 @@ const cards = [
 		border: 1px solid oklch(from currentColor l c h / 0.1);
 		text-decoration: none;
 		transition:
-			background-color 0.18s,
-			translate 0.12s,
-			scale 0.12s;
+			background-color var(--ease-smooth),
+			translate var(--ease-smooth),
+			scale var(--ease-smooth);
 
 		&:hover {
 			background-color: oklch(from currentColor 20% calc(c * 0.25) h / 1);
-			scale: 0.975;
+			scale: 0.96;
+
+			.popup__card__icon {
+				scale: 1.2;
+			}
 		}
 
 		&:active {
@@ -256,6 +246,7 @@ const cards = [
 			flex-shrink: 0;
 			position: relative;
 			border-radius: calc(var(--br) * 0.8);
+			transition: scale var(--ease-smooth);
 
 			img {
 				$img-sz: 2rem;
@@ -286,7 +277,7 @@ const cards = [
 		}
 	}
 
-	// ── Footer ───────────────────────────────────────────────────────────────
+	// FOOTER
 	&__footer {
 		display: flex;
 		align-items: center;
