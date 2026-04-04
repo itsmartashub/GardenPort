@@ -45,7 +45,6 @@ export default defineConfig({
 	}),
 
 	manifest: ({ browser }) => ({
-		name: 'GardenPort - Radio Garden Favorites Backup & Restore',
 		permissions: [],
 		host_permissions: ['*://radio.garden/*'],
 		author: 'itsmarta',
@@ -53,15 +52,21 @@ export default defineConfig({
 
 		// CHROME
 		...(browser === 'chrome' && {
+			name: 'GardenPort - Radio Garden Favorites Backup & Restore',
 			minimum_chrome_version: '119',
 		}),
 
 		// FIREFOX
 		...(browser === 'firefox' && {
+			name: 'GardenPort - Radio Garden Backup & Restore', // must be under 45 chars
 			browser_specific_settings: {
 				gecko: {
 					id: 'gardenport@itsmartashub',
 					strict_min_version: '128.0', // matches OKLCH support
+					data_collection_permissions: {
+						required: ['none'],
+						optional: [],
+					},
 				},
 			},
 		}),

@@ -2,7 +2,7 @@
 	"name": "gardenport",
 	"version": "1.0.0",
 	"displayName": "GardenPort - Radio Garden Favorites Backup & Restore",
-	"description": "Never lose your Radio Garden station collection again. GardenPort gives you full manual control over your Radio Garden favorites - export, import, merge, or replace your station list with ease.",
+	"description": "Export, import, merge, or replace your Radio Garden favorites. Never lose your station collection again.",
 	"private": true,
 	"type": "module",
 	"repository": {
@@ -58,16 +58,12 @@
 	],
 	"scripts": {
 		"dev": "wxt",
-		"dev:firefox": "wxt -b firefox",
-		"dev:firefox:mv3": "wxt -b firefox --mv3",
+		"dev:firefox": "wxt -b firefox --mv3",
 		"build": "wxt build",
-		"build:firefox": "wxt build -b firefox",
-		"build:firefox:mv3": "wxt build -b firefox --mv3",
+		"build:firefox": "wxt build -b firefox --mv3",
 		"zip": "wxt zip",
-		"zip:firefox": "wxt zip -b firefox",
-		"zip:firefox:mv3": "wxt zip -b firefox --mv3",
+		"zip:firefox": "wxt zip -b firefox --mv3",
 		"zip:all": "bun run zip && bun run zip:firefox",
-		"zip:all:mv3": "bun run zip && bun run zip:firefox:mv3",
 		"compile": "vue-tsc --noEmit",
 		"postinstall": "wxt prepare"
 	},
