@@ -7,14 +7,14 @@ export default defineConfig({
 	modules: ['@wxt-dev/module-vue', '@wxt-dev/auto-icons'],
 	srcDir: 'src',
 
-	// Override default chrome browser to Brave
+	//override default chrome browser to Brave
 	webExt: {
 		disabled: true,
-		// Manually point to my Brave exe
+		// manually point to my Brave exe
 		binaries: {
-			chrome: 'C:/Program Files/BraveSoftware/Brave-Browser-Beta/Application/brave.exe', // Change path for Mac/Linux
+			chrome: 'C:/Program Files/BraveSoftware/Brave-Browser-Beta/Application/brave.exe', // change path for Mac/Linux
 		},
-		// This flag enables the Prompt API
+		// this flag enables the Prompt API
 		chromiumArgs: ['--disable-features=DisableLoadExtensionCommandLineSwitch'],
 	},
 
@@ -32,10 +32,8 @@ export default defineConfig({
 			}),
 		],
 		css: {
-			// postcss: {
-			// 	plugins: [autoprefixer()],
-			// },
-			devSourcemap: true, // ← Enable source maps in dev
+			devSourcemap: true, // WXT/Vite should automatically pick up postcss.config.js
+			postcss: {},
 			preprocessorOptions: {
 				scss: {
 					quietDeps: true,
@@ -46,9 +44,26 @@ export default defineConfig({
 		},
 	}),
 
-	manifest: {
+	manifest: ({ browser }) => ({
 		name: 'GardenPort - Radio Garden Favorites Backup & Restore',
 		permissions: [],
-		host_permissions: ['https://radio.garden/*'],
-	},
+		host_permissions: ['*://radio.garden/*'],
+		author: 'itsmarta',
+		homepage_url: 'https://github.com/itsmartashub/GardenPort',
+
+		// CHROME
+		...(browser === 'chrome' && {
+			minimum_chrome_version: '119',
+		}),
+
+		// FIREFOX
+		...(browser === 'firefox' && {
+			browser_specific_settings: {
+				gecko: {
+					id: 'gardenport@itsmartashub',
+					strict_min_version: '128.0', // matches OKLCH support
+				},
+			},
+		}),
+	}),
 })

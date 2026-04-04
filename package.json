@@ -59,11 +59,15 @@
 	"scripts": {
 		"dev": "wxt",
 		"dev:firefox": "wxt -b firefox",
+		"dev:firefox:mv3": "wxt -b firefox --mv3",
 		"build": "wxt build",
 		"build:firefox": "wxt build -b firefox",
+		"build:firefox:mv3": "wxt build -b firefox --mv3",
 		"zip": "wxt zip",
 		"zip:firefox": "wxt zip -b firefox",
-		"zip:all": "wxt zip && wxt zip -b firefox",
+		"zip:firefox:mv3": "wxt zip -b firefox --mv3",
+		"zip:all": "bun run zip && bun run zip:firefox",
+		"zip:all:mv3": "bun run zip && bun run zip:firefox:mv3",
 		"compile": "vue-tsc --noEmit",
 		"postinstall": "wxt prepare"
 	},
@@ -74,10 +78,21 @@
 		"@iconify-json/tabler": "^1.2.33",
 		"@wxt-dev/auto-icons": "^1.1.1",
 		"@wxt-dev/module-vue": "^1.0.3",
+		"autoprefixer": "^10.4.27",
+		"postcss": "^8.5.8",
+		"postcss-combine-duplicated-selectors": "^10.0.3",
+		"postcss-nesting": "^14.0.0",
+		"postcss-preset-env": "^11.2.0",
+		"postcss-sort-media-queries": "^6.3.3",
 		"sass-embedded": "^1.98.0",
 		"typescript": "^5.9.3",
 		"unplugin-icons": "^23.0.1",
 		"vue-tsc": "^3.2.5",
 		"wxt": "^0.20.20"
-	}
+	},
+	"browserslist": [
+		"last 3 Chrome versions",
+		"last 3 Firefox versions",
+		"not dead"
+	]
 }
