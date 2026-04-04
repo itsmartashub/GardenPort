@@ -38,7 +38,7 @@ export default defineConfig({
 				scss: {
 					quietDeps: true,
 					api: 'modern-compiler',
-					additionalData: `@use "@/assets/styles/utils/_index.scss" as *;`,
+					additionalData: `@use "@/assets/styles/utils" as *;`,
 				},
 			},
 		},

@@ -1,18 +1,14 @@
 :root {
-	--c-txt: oklch(from var(--c-import) 60% calc(c * 0.3) h / 1);
-	--c-bg: oklch(from var(--c-import) 10% c h / 1);
+	--c-txt: oklch(from var(--c-accent) 60% calc(c * 0.3) h / 1);
+	--c-bg: oklch(from var(--c-accent) 10% c h / 1);
 
-	--c-orange: oklch(78.8% 0.147 58.18);
 	/* --c-purple: oklch(64.494% 0.20008 286.225); */
-	--c-purple: oklch(75.532% 0.1546 307.422);
 	/* --c-blue: oklch(68.347% 0.15886 255.959); */
+	--c-purple: oklch(75.532% 0.1546 307.422);
 	--c-blue: #a9b4f0;
 
-	--c-green-dim: oklch(from var(--c-import) l c h / 0.12);
 	--c-purple-dim: oklch(from var(--c-purple) l c h / 0.12);
 	--c-blue-dim: oklch(from var(--c-blue) l c h / 0.12);
-
-	--c-border: oklch(from var(--c-import) 65% calc(c * 0.1) h / 0.12);
 
 	--logo-sz: 2.5em;
 	/* --icon-sz: 1.35em; */
@@ -55,7 +51,7 @@ body {
 }
 
 ::selection {
-	background: var(--c-import);
+	background: var(--c-accent);
 	color: var(--c-bg);
 }
 

@@ -157,7 +157,7 @@ const onInputPaste = (e) => {
 	</Transition>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .gp-panel {
 	position: fixed;
 	top: var(--panel-gap);
@@ -205,21 +205,21 @@ const onInputPaste = (e) => {
 		padding: var(--sp-lg);
 		font-size: var(--fsz-xxs);
 		color: var(--c-txt);
-		background-color: cmod(var(--c-import), $a: 0.05);
-		border: 1px solid cmod(var(--c-import), $a: 0.1);
+		background-color: cmod(var(--c-accent), $a: 0.05);
+		border: 1px solid cmod(var(--c-accent), $a: 0.1);
 		border-radius: var(--br);
 
 		outline: none;
 		resize: none;
 
 		&::placeholder {
-			color: cmod(var(--c-import), $a: 0.8);
+			color: cmod(var(--c-accent), $a: 0.8);
 			line-height: 1.6;
 		}
 
 		&:focus {
-			border-color: cmod(var(--c-import), $a: 0.1);
-			background-color: cmod(var(--c-import), $a: 0.12);
+			border-color: cmod(var(--c-accent), $a: 0.1);
+			background-color: cmod(var(--c-accent), $a: 0.12);
 		}
 	}
 }
@@ -238,9 +238,9 @@ const onInputPaste = (e) => {
 		transition: box-shadow var(--ease-base);
 		border-radius: 50vw;
 		box-shadow:
-			0 0 0 3px cmod(var(--c-export), $a: 0.35),
-			0 0 0 10px cmod(var(--c-export), $a: 0.2),
-			0 0 0 18px cmod(var(--c-export), $a: 0);
+			0 0 0 3px cmod(var(--c-orange), $a: 0.35),
+			0 0 0 10px cmod(var(--c-orange), $a: 0.2),
+			0 0 0 18px cmod(var(--c-orange), $a: 0);
 	}
 
 	&--rotated {
@@ -256,9 +256,9 @@ const onInputPaste = (e) => {
 
 		img {
 			box-shadow:
-				0 0 0 4px cmod(var(--c-export), $a: 0.3),
-				0 0 0 12px cmod(var(--c-export), $a: 0.2),
-				0 0 0 18px cmod(var(--c-export), $a: 0.2);
+				0 0 0 4px cmod(var(--c-orange), $a: 0.3),
+				0 0 0 12px cmod(var(--c-orange), $a: 0.2),
+				0 0 0 18px cmod(var(--c-orange), $a: 0.2);
 		}
 	}
 }

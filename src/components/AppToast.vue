@@ -40,7 +40,7 @@ const icons = {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .toast-container {
 	position: fixed;
 	top: 2.5rem;
@@ -77,8 +77,8 @@ const icons = {
 	font-weight: 600;
 	white-space: nowrap;
 	transition:
-		opacity var(--ease-fast),
-		transform var(--ease-fast);
+		opacity var(--ease-base),
+		transform var(--ease-base);
 
 	color: var(--c-txt);
 	background-color: cmod(currentColor, $l: '25%', $a: 0.45);

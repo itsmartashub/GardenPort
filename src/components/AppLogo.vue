@@ -8,7 +8,7 @@
 import logoSrc from '@/assets/img/logo-cc-green.png'
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .gp-logo {
 	display: grid;
 	place-items: center;
@@ -25,8 +25,8 @@ import logoSrc from '@/assets/img/logo-cc-green.png'
 
 		img {
 			box-shadow:
-				0 0 0 0 oklch(from var(--c-orange) l c h / 0.3),
-				0 0 0 0 oklch(from var(--c-orange) l c h / 0.2);
+				0 0 0 0 cmod(var(--c-orange), $a: 0.3),
+				0 0 0 0 cmod(var(--c-orange), $a: 0.2);
 		}
 	}
 
@@ -38,9 +38,9 @@ import logoSrc from '@/assets/img/logo-cc-green.png'
 		transition: box-shadow var(--ease-base);
 
 		box-shadow:
-			0 0 0 3px oklch(from var(--c-orange) l c h / 0.3),
-			0 0 0 10px oklch(from var(--c-orange) l c h / 0.2),
-			0 0 0 16px oklch(from var(--c-orange) l c h / 0);
+			0 0 0 3px cmod(var(--c-orange), $a: 0.3),
+			0 0 0 10px cmod(var(--c-orange), $a: 0.2),
+			0 0 0 16px cmod(var(--c-orange), $a: 0);
 	}
 }
 </style>

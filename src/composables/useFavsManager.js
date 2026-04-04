@@ -1,6 +1,7 @@
 import { ref } from 'vue'
 import { useFavsStorage } from '@/composables/useFavsStorage'
 import { useToast } from '@/composables/useToast'
+import { delay } from '@/utils/delay'
 
 // Panel UI states
 export const PANEL_STATE = {
@@ -32,8 +33,6 @@ export function useFavsManager() {
 		state.value = state.value === PANEL_STATE.PASTE ? PANEL_STATE.IDLE : PANEL_STATE.PASTE
 	}
 
-	const _delay = (ms = 250) => new Promise((resolve) => setTimeout(resolve, ms))
-
 	// EXPORTING ===================================================
 	const exportFile = async () => {
 		// console.log('exportFile')
@@ -64,7 +63,7 @@ export function useFavsManager() {
 			anchor.click()
 			URL.revokeObjectURL(anchor.href)
 
-			await _delay()
+			await delay()
 			toast.success('Export successful')
 		} catch (error) {
 			console.error('Export failed:', error)
@@ -91,7 +90,7 @@ export function useFavsManager() {
 
 			await navigator.clipboard.writeText(JSON.stringify(favList))
 
-			await _delay()
+			await delay()
 			toast.success('Copied to clipboard')
 		} catch (error) {
 			console.error('Copy failed:', error)
@@ -200,7 +199,7 @@ export function useFavsManager() {
 		pendingData.value = null
 		state.value = PANEL_STATE.IDLE
 
-		toast.info('Operation cancelled')
+		toast.warning('Operation cancelled')
 		// console.log('Operation cancelled')
 	}
 

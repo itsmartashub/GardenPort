@@ -45,8 +45,8 @@ const hasLabel = computed(() => !!props.label)
 
 	/* Colors */
 	color: var(--c-badge);
-	background-color: oklch(from var(--c-badge) l c h / 0.11);
-	border: 0.08em solid oklch(from var(--c-badge) l c h / 0.15);
+	background-color: cmod(var(--c-badge), $a: 0.11);
+	border: 0.08em solid cmod(var(--c-badge), $a: 0.15);
 	transition:
 		background-color var(--ease-base),
 		color var(--ease-base),
@@ -55,16 +55,16 @@ const hasLabel = computed(() => !!props.label)
 
 .is-soft {
 	color: var(--c-badge);
-	background-color: oklch(from var(--c-badge) l c h / 0.11);
-	border: 1px solid oklch(from var(--c-badge) l c h / 0.15);
+	background-color: cmod(var(--c-badge), $a: 0.11);
+	border: 1px solid cmod(var(--c-badge), $a: 0.15);
 
 	&:hover {
-		background-color: oklch(from var(--c-badge) l c h / 0.18);
+		background-color: cmod(var(--c-badge), $a: 0.18);
 	}
 }
 
 .is-filled {
-	color: oklch(from var(--c-badge) 25% c h);
+	color: cmod(var(--c-badge), $l: "25%");
 	background-color: var(--c-badge);
 	border: 1px solid var(--c-badge);
 
@@ -101,7 +101,7 @@ const hasLabel = computed(() => !!props.label)
 	height: $dot-size;
 	border-radius: 50vw;
 	background-color: currentColor;
-	box-shadow: 0 0 6px oklch(from currentColor l c h / 0.7);
+	box-shadow: 0 0 6px cmod(currentColor, $a: 0.7);
 	animation: pulse 2.4s ease-in-out infinite;
 }
 

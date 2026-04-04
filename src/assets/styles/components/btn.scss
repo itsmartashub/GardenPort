@@ -1,4 +1,4 @@
-// @use "@/assets/styles/utils/_index.scss" as *; // sa createShadowRootUi() ovo ne treba i kao da je oni u vite dovoljno, ali sa createIntegratedUi() i kad importujemo samo main.scss onako a ne svaki scss file u content.js, treba -> wtf
+@use "@/assets/styles/utils/index.scss" as *; // sa createShadowRootUi() ovo ne treba i kao da je oni u vite dovoljno, ali sa createIntegratedUi() i kad importujemo samo main.scss onako a ne svaki scss file u content.js, treba -> wtf
 
 %btn-shared {
     padding: var(--sp-md);
@@ -26,7 +26,7 @@
         scale var(--ease-base),
         translate var(--ease-base),
         color var(--ease-base),
-        opacity var(--ease-base);
+        opacity var(--ease-base) !important;
 
     svg {
         width: var(--icon-sz);
@@ -88,20 +88,20 @@
 
     // Variants
     &--export {
-        color: var(--c-export);
+        color: var(--c-orange);
 
         &.active {
             color: cmod(currentColor, $l: "25%");
-            background-color: var(--c-export);
+            background-color: var(--c-orange);
         }
     }
 
     &--import {
-        color: var(--c-import);
+        color: var(--c-accent);
 
         &.active {
             color: cmod(currentColor, $l: "25%");
-            background-color: var(--c-import);
+            background-color: var(--c-accent);
         }
     }
 
@@ -114,16 +114,13 @@
 
     &--succ {
         color: var(--c-succ);
-        // background-color: cmod(var(--c-succ), $l: "15%");
     }
 
     &--warn {
         color: var(--c-warn);
-        // background-color: cmod(var(--c-warn), $l: "15%");
     }
 
     &--err {
         color: var(--c-err);
-        // background-color: cmod(var(--c-err), $l: "15%");
     }
 }
