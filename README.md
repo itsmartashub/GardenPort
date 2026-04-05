@@ -35,6 +35,22 @@ Whether you need to save your station list before clearing your browser data or 
 
 ## Installation
 
+### Web Store Installation
+
+#### Chrome Web Store
+
+1. Go to the [GardenPort extension page](https://chromewebstore.google.com/detail/gardenport-radio-garden-f/ffnajpljoajekdnamceamghmajpnikml)
+2. Click the `Add to Chrome` button
+3. Confirm the installation when prompted
+4. Visit the [Radio Garden](https://radio.garden/) website to start using GardenPort.
+
+#### Firefox Add-On
+
+1. Go to [GardenPort Firefox Add-ons page](https://addons.mozilla.org/en-US/firefox/addon/gardenport-radio-garden-backup/)
+2. Click the `Add to Firefox` button
+3. Confirm the installation when prompted by clicking the `Add`
+4. Visit the [Radio Garden](https://radio.garden/) website to start using GardenPort.
+
 ### Developer Mode Installation
 
 #### Chromium
