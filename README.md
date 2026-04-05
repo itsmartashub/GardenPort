@@ -18,8 +18,6 @@
 
 Whether you need to save your station list before clearing your browser data or you want to move your favorites to a different browser, **GardenPort** provides the tools to handle your data directly.
 
-**Never lose your Radio Garden station collection again.**
-
 ## Features
 
 ### Exporting
@@ -55,10 +53,10 @@ Whether you need to save your station list before clearing your browser data or 
 
 #### Chromium
 
-1. Download the `gardenport-*.*.*-chrome.zip` from the [Releases](https://github.com/itsmartashub/GardenPort/releases) and unzip.
+1. Download the `gardenport-*.*.*-chrome.zip` from the [Releases](https://github.com/itsmartashub/GardenPort/releases).
 2. Open Chrome, go to `chrome://extensions/`
 3. Enable `Developer mode` in the top-right corner.
-4. Click `Load unpacked` and just drag the `zip` file
+4. Drag in the `zip` file
 
 #### Firefox
 
