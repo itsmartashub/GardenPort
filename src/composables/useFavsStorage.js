@@ -1,4 +1,5 @@
-const STORAGE_KEY = '_immortal|favorites-list'
+// const STORAGE_KEY = '_immortal|favorites-list'
+const STORAGE_KEY = 'favorites-list'
 
 /*
 radio garden uses ImmortalDB which reads IDB as primary source on firefox !! so must keep both stores in sync on every write */
