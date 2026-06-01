@@ -1,6 +1,6 @@
 {
 	"name": "gardenport",
-	"version": "1.0.0",
+	"version": "2.0.0",
 	"displayName": "GardenPort - Radio Garden Favorites Backup & Restore",
 	"description": "Export, import, merge, or replace your Radio Garden favorites. Never lose your station collection again.",
 	"private": true,
