@@ -177,22 +177,28 @@ export function useFavsManager() {
 	}
 
 	const applyOverride = async () => {
-		await storage.write(pendingData.value)
-
-		toast.success(`Overridden - ${pendingData.value.length} stations saved`)
-		// console.log(`Overridden - ${pendingData.value.length} stations saved`)
-		_finalize()
+		try {
+			await storage.write(pendingData.value)
+			toast.success(`Overridden - ${pendingData.value.length} stations saved`)
+			_finalize()
+		} catch (error) {
+			console.error('Override failed:', error)
+			toast.error('Save failed. Storage may be full')
+		}
 	}
 
 	const applyMerge = async () => {
-		const curr = await storage.read()
-		const finalData = [...new Set([...curr, ...pendingData.value])]
+		try {
+			const curr = await storage.read()
+			const finalData = [...new Set([...curr, ...pendingData.value])]
 
-		await storage.write(finalData)
-
-		toast.success(`Merged - ${finalData.length} stations saved`)
-		// console.log(`Merged - ${finalData.length} stations saved`)
-		_finalize()
+			await storage.write(finalData)
+			toast.success(`Merged - ${finalData.length} stations saved`)
+			_finalize()
+		} catch (error) {
+			console.error('Merge failed:', error)
+			toast.error('Save failed. Storage may be full')
+		}
 	}
 
 	const cancelImport = () => {
@@ -204,10 +210,16 @@ export function useFavsManager() {
 	}
 
 	const handlePasteInput = (value) => {
-		// console.log(value)
 		const v = value.trim()
 
-		if (v.startsWith('[') && v.endsWith(']')) validateAndStage(v)
+		if (!v) return
+
+		if (v.startsWith('[') && v.endsWith(']')) {
+			validateAndStage(v)
+			return
+		}
+
+		toast.warning('Paste a valid JSON array')
 	}
 
 	const _finalize = () => {
